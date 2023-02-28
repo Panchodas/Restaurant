@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Restaurant.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,7 +30,7 @@ namespace Restaurant.Views.Windows
             {
                 //if (PasswordPb.Password == RepeatedPasswordPb.Password)
                 //{
-                    
+
                 //}
                 //if ()
                 //{
@@ -42,6 +43,23 @@ namespace Restaurant.Views.Windows
                 //{
 
                 //}
+                var logPass = App.context.Admins.FirstOrDefault(i => i.Login == MailTb.Text);
+                if (logPass != null)
+                {
+                    MessageBox.Show("Пользователь с таким логином уже существует");
+                }
+                else
+                {
+                    bool resp = false;
+                    resp = PasswordCheck(resp);
+                    if (resp == true)
+                    {
+                        AddUser();
+                        AuthentificationWindow authentification = new AuthentificationWindow();
+                        authentification.Show();
+                        Close();
+                    }
+                }
             }
             else
             {
@@ -49,12 +67,43 @@ namespace Restaurant.Views.Windows
                 //MessageBox.Show("Неверный логин или пароль");
             }
         }
+        private bool PasswordCheck(bool resp)
+        {
+            if (PasswordPb.Password == RepeatedPasswordPb.Password)
+            {
+                resp = true;
+            }
+            else
+            {
+                MessageBox.Show("Пароли должны совпадать");
+            }
+            return resp;
+        }
+        private void AddUser()
+        {
+            //if ()
+            //{
 
+            //}
+            Admins admins = new Admins()
+            {
+                Login = MailTb.Text,
+                Password = RepeatedPasswordPb.Password
+            };
+            App.context.Admins.Add(admins);
+            App.context.SaveChanges();
+            MessageBox.Show("Вы успешно зарегистрированы");
+        }
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             AuthentificationWindow authentificationWindow = new AuthentificationWindow();
             authentificationWindow.Show();
             Close();
+        }
+
+        private void RegistrationBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Registaration();
         }
     }
 }

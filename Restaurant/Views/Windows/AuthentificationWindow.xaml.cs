@@ -61,7 +61,8 @@ namespace Restaurant.Views.Windows
         private void PasswordRecoveryBtn_Click(object sender, RoutedEventArgs e)
         {
             PasswordRecoveryWindow passwordRecoveryWindow = new PasswordRecoveryWindow();
-            passwordRecoveryWindow.ShowDialog();
+            passwordRecoveryWindow.Show();
+            Close();
         }
     }
 }
