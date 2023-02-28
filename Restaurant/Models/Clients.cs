@@ -25,7 +25,7 @@ namespace Restaurant.Models
         public string Surname { get; set; }
         public string Name { get; set; }
         public string MiddleName { get; set; }
-        public Nullable<decimal> Bonuses { get; set; }
+        public decimal Bonuses { get; set; }
         public string PhoneNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

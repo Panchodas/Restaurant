@@ -26,6 +26,7 @@ namespace Restaurant.Models
         }
     
         public virtual DbSet<Admins> Admins { get; set; }
+        public virtual DbSet<Checks> Checks { get; set; }
         public virtual DbSet<Clients> Clients { get; set; }
         public virtual DbSet<Dishes> Dishes { get; set; }
         public virtual DbSet<DishTypes> DishTypes { get; set; }

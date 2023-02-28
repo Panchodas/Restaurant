@@ -22,10 +22,10 @@ namespace Restaurant.Models
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public Nullable<int> Gramming { get; set; }
-        public Nullable<decimal> Price { get; set; }
+        public int Gramming { get; set; }
+        public decimal Price { get; set; }
         public string Сomposition { get; set; }
-        public Nullable<int> DishTypeId { get; set; }
+        public int DishTypeId { get; set; }
     
         public virtual DishTypes DishTypes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

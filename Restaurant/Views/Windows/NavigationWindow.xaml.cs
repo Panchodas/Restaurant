@@ -30,11 +30,16 @@ namespace Restaurant.Views.Windows
             authentificationWindow.Show();
             Close();
         }
-
         private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             //RecordDg.SelectedItem
             //IdColumn.
+        }
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddRecordWindow addRecordWindow = new AddRecordWindow();
+            addRecordWindow.Show();
+            Close();
         }
     }
 }

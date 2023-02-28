@@ -81,10 +81,6 @@ namespace Restaurant.Views.Windows
         }
         private void AddUser()
         {
-            //if ()
-            //{
-
-            //}
             Admins admins = new Admins()
             {
                 Login = MailTb.Text,

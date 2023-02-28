@@ -1,0 +1,97 @@
+﻿<Window x:Class="Restaurant.Views.Windows.AddRecordWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Restaurant.Views.Windows"
+        mc:Ignorable="d"
+        Title="AddRecordWindow"
+        Height="305"
+        Width="300"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <!--<RowDefinition Height="70" />
+                <RowDefinition Height="70" />-->
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <!--<StackPanel>
+                <Label Content="Фамилия"
+                       HorizontalAlignment="Left"
+                       Margin="10 0 0 0"/>
+                <TextBox x:Name="SurnameTb"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <Label Content="Имя"
+                       HorizontalAlignment="Left"
+                       Margin="10 0 0 0"/>
+                <TextBox x:Name="NameTb"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2">
+                <Label Content="Отчество"
+                       HorizontalAlignment="Left"
+                       Margin="10 0 0 0"/>
+                <TextBox x:Name="MiddleNameTb"/>
+            </StackPanel>
+            <StackPanel Grid.Row="3">
+                <Label Content="Столик"
+                       HorizontalAlignment="Left"
+                       Margin="10 0 0 0"/>
+                <ComboBox x:Name="TableCmb"
+                          Margin="10 0 10 0"
+                          Height="30"
+                          DisplayMemberPath="Number"/>
+            </StackPanel>
+            <StackPanel Grid.Row="4">
+                <Label Content="Время"
+                       HorizontalAlignment="Left"
+                       Margin="10 0 0 0"/>
+                <TextBox x:Name="TimeTb"/>
+            </StackPanel>-->
+            <StackPanel Grid.Row="0">
+                <Label Content="Клиент"
+                       HorizontalAlignment="Left"
+                       Margin="10 0 0 0"/>
+                <ComboBox x:Name="ClientCmb"
+                          Margin="10 0 10 0"
+                          Height="30"
+                          DisplayMemberPath="Number"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <Label Content="Столик"
+                       HorizontalAlignment="Left"
+                       Margin="10 0 0 0"/>
+                <ComboBox x:Name="TableCmb"
+                          Margin="10 0 10 0"
+                          Height="30"
+                          DisplayMemberPath="Number"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2">
+                <Label Content="Время"
+                       HorizontalAlignment="Left"
+                       Margin="10 0 0 0"/>
+                <TextBox x:Name="TimeTb"/>
+            </StackPanel>
+
+            <Button Content="Назад"
+                    Grid.Row="3"
+                    HorizontalAlignment="Left"
+                    Width="100"
+                    Margin="10 0 0 0"
+                    Name="BackBtn"
+                    Click="BackBtn_Click"/>
+            <Button Content="Добавить"
+                    Grid.Row="3"
+                    HorizontalAlignment="Right"
+                    Width="100"
+                    Margin="0 0 10 0"
+                    x:Name="AddBtn"
+                    Click="AddBtn_Click"/>
+        </Grid>
+    </Grid>
+</Window>

@@ -15,8 +15,8 @@ namespace Restaurant.Models
     public partial class Orders
     {
         public int Id { get; set; }
-        public Nullable<int> ClientId { get; set; }
-        public Nullable<int> DishId { get; set; }
+        public int ClientId { get; set; }
+        public int DishId { get; set; }
     
         public virtual Clients Clients { get; set; }
         public virtual Dishes Dishes { get; set; }

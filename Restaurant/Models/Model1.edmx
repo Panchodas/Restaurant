@@ -13,15 +13,26 @@
           <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
+        <EntityType Name="Checks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="RecordId" Type="int" Nullable="false" />
+          <Property Name="GuestBill" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PaymentMethodId" Type="int" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="BonusesReceived" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
         <EntityType Name="Clients">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Surname" Type="nvarchar" MaxLength="50" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Bonuses" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Bonuses" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Dishes">
@@ -29,53 +40,49 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="255" />
-          <Property Name="Gramming" Type="int" />
-          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Gramming" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Сomposition" Type="nvarchar" MaxLength="255" />
-          <Property Name="DishTypeId" Type="int" />
+          <Property Name="DishTypeId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DishTypes">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="ClientId" Type="int" />
-          <Property Name="DishId" Type="int" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="DishId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PaymentMethods">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Records">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="ClientId" Type="int" />
-          <Property Name="TableId" Type="int" />
-          <Property Name="VisitTime" Type="time" Precision="7" />
-          <Property Name="GuestBill" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="PaymentMethodId" Type="int" />
-          <Property Name="StatusId" Type="int" />
-          <Property Name="BonusesReceived" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="TableId" Type="int" Nullable="false" />
+          <Property Name="VisitTime" Type="time" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="Statuses">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -92,10 +99,47 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="IsReserved" Type="bit" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="IsReserved" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Checks_PaymentMethods">
+          <End Role="PaymentMethods" Type="Self.PaymentMethods" Multiplicity="1" />
+          <End Role="Checks" Type="Self.Checks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethods">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Checks">
+              <PropertyRef Name="PaymentMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Checks_Records">
+          <End Role="Records" Type="Self.Records" Multiplicity="1" />
+          <End Role="Checks" Type="Self.Checks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Records">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Checks">
+              <PropertyRef Name="RecordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Checks_Statuses">
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
+          <End Role="Checks" Type="Self.Checks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Checks">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Dishes_DishTypes">
-          <End Role="DishTypes" Type="Self.DishTypes" Multiplicity="0..1" />
+          <End Role="DishTypes" Type="Self.DishTypes" Multiplicity="1" />
           <End Role="Dishes" Type="Self.Dishes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DishTypes">
@@ -107,7 +151,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Orders_Clients">
-          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
@@ -119,7 +163,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Orders_Dishes">
-          <End Role="Dishes" Type="Self.Dishes" Multiplicity="0..1" />
+          <End Role="Dishes" Type="Self.Dishes" Multiplicity="1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Dishes">
@@ -131,7 +175,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Records_Clients">
-          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
           <End Role="Records" Type="Self.Records" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
@@ -142,32 +186,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Records_PaymentMethods">
-          <End Role="PaymentMethods" Type="Self.PaymentMethods" Multiplicity="0..1" />
-          <End Role="Records" Type="Self.Records" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PaymentMethods">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Records">
-              <PropertyRef Name="PaymentMethodId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Records_Statuses">
-          <End Role="Statuses" Type="Self.Statuses" Multiplicity="0..1" />
-          <End Role="Records" Type="Self.Records" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Statuses">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Records">
-              <PropertyRef Name="StatusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Records_Tables">
-          <End Role="Tables" Type="Self.Tables" Multiplicity="0..1" />
+          <End Role="Tables" Type="Self.Tables" Multiplicity="1" />
           <End Role="Records" Type="Self.Records" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tables">
@@ -180,6 +200,7 @@
         </Association>
         <EntityContainer Name="Хранилище RestaurantSmiPanModelContainer">
           <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Checks" EntityType="Self.Checks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dishes" EntityType="Self.Dishes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DishTypes" EntityType="Self.DishTypes" Schema="dbo" store:Type="Tables" />
@@ -189,6 +210,18 @@
           <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tables" EntityType="Self.Tables" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Checks_PaymentMethods" Association="Self.FK_Checks_PaymentMethods">
+            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
+            <End Role="Checks" EntitySet="Checks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Checks_Records" Association="Self.FK_Checks_Records">
+            <End Role="Records" EntitySet="Records" />
+            <End Role="Checks" EntitySet="Checks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Checks_Statuses" Association="Self.FK_Checks_Statuses">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="Checks" EntitySet="Checks" />
+          </AssociationSet>
           <AssociationSet Name="FK_Dishes_DishTypes" Association="Self.FK_Dishes_DishTypes">
             <End Role="DishTypes" EntitySet="DishTypes" />
             <End Role="Dishes" EntitySet="Dishes" />
@@ -205,14 +238,6 @@
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Records" EntitySet="Records" />
           </AssociationSet>
-          <AssociationSet Name="FK_Records_PaymentMethods" Association="Self.FK_Records_PaymentMethods">
-            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
-            <End Role="Records" EntitySet="Records" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Records_Statuses" Association="Self.FK_Records_Statuses">
-            <End Role="Statuses" EntitySet="Statuses" />
-            <End Role="Records" EntitySet="Records" />
-          </AssociationSet>
           <AssociationSet Name="FK_Records_Tables" Association="Self.FK_Records_Tables">
             <End Role="Tables" EntitySet="Tables" />
             <End Role="Records" EntitySet="Records" />
@@ -224,6 +249,7 @@
       <Schema Namespace="RestaurantSmiPanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="RestaurantSmiPanEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admins" EntityType="RestaurantSmiPanModel.Admins" />
+          <EntitySet Name="Checks" EntityType="RestaurantSmiPanModel.Checks" />
           <EntitySet Name="Clients" EntityType="RestaurantSmiPanModel.Clients" />
           <EntitySet Name="Dishes" EntityType="RestaurantSmiPanModel.Dishes" />
           <EntitySet Name="DishTypes" EntityType="RestaurantSmiPanModel.DishTypes" />
@@ -233,6 +259,18 @@
           <EntitySet Name="Statuses" EntityType="RestaurantSmiPanModel.Statuses" />
           <EntitySet Name="sysdiagrams" EntityType="RestaurantSmiPanModel.sysdiagrams" />
           <EntitySet Name="Tables" EntityType="RestaurantSmiPanModel.Tables" />
+          <AssociationSet Name="FK_Checks_PaymentMethods" Association="RestaurantSmiPanModel.FK_Checks_PaymentMethods">
+            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
+            <End Role="Checks" EntitySet="Checks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Checks_Records" Association="RestaurantSmiPanModel.FK_Checks_Records">
+            <End Role="Records" EntitySet="Records" />
+            <End Role="Checks" EntitySet="Checks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Checks_Statuses" Association="RestaurantSmiPanModel.FK_Checks_Statuses">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="Checks" EntitySet="Checks" />
+          </AssociationSet>
           <AssociationSet Name="FK_Orders_Clients" Association="RestaurantSmiPanModel.FK_Orders_Clients">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Orders" EntitySet="Orders" />
@@ -249,14 +287,6 @@
             <End Role="Dishes" EntitySet="Dishes" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK_Records_PaymentMethods" Association="RestaurantSmiPanModel.FK_Records_PaymentMethods">
-            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
-            <End Role="Records" EntitySet="Records" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Records_Statuses" Association="RestaurantSmiPanModel.FK_Records_Statuses">
-            <End Role="Statuses" EntitySet="Statuses" />
-            <End Role="Records" EntitySet="Records" />
-          </AssociationSet>
           <AssociationSet Name="FK_Records_Tables" Association="RestaurantSmiPanModel.FK_Records_Tables">
             <End Role="Tables" EntitySet="Tables" />
             <End Role="Records" EntitySet="Records" />
@@ -270,15 +300,29 @@
           <Property Name="Login" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Checks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="RecordId" Type="Int32" Nullable="false" />
+          <Property Name="GuestBill" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="PaymentMethodId" Type="Int32" Nullable="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="BonusesReceived" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="PaymentMethods" Relationship="RestaurantSmiPanModel.FK_Checks_PaymentMethods" FromRole="Checks" ToRole="PaymentMethods" />
+          <NavigationProperty Name="Records" Relationship="RestaurantSmiPanModel.FK_Checks_Records" FromRole="Checks" ToRole="Records" />
+          <NavigationProperty Name="Statuses" Relationship="RestaurantSmiPanModel.FK_Checks_Statuses" FromRole="Checks" ToRole="Statuses" />
+        </EntityType>
         <EntityType Name="Clients">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Bonuses" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Bonuses" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Orders" Relationship="RestaurantSmiPanModel.FK_Orders_Clients" FromRole="Clients" ToRole="Orders" />
           <NavigationProperty Name="Records" Relationship="RestaurantSmiPanModel.FK_Records_Clients" FromRole="Clients" ToRole="Records" />
@@ -288,11 +332,11 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Gramming" Type="Int32" />
-          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Gramming" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="Сomposition" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="DishTypeId" Type="Int32" />
+          <Property Name="DishTypeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DishTypes" Relationship="RestaurantSmiPanModel.FK_Dishes_DishTypes" FromRole="Dishes" ToRole="DishTypes" />
           <NavigationProperty Name="Orders" Relationship="RestaurantSmiPanModel.FK_Orders_Dishes" FromRole="Dishes" ToRole="Orders" />
         </EntityType>
@@ -301,7 +345,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Dishes" Relationship="RestaurantSmiPanModel.FK_Dishes_DishTypes" FromRole="DishTypes" ToRole="Dishes" />
         </EntityType>
         <EntityType Name="Orders">
@@ -309,8 +353,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="ClientId" Type="Int32" />
-          <Property Name="DishId" Type="Int32" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="DishId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Clients" Relationship="RestaurantSmiPanModel.FK_Orders_Clients" FromRole="Orders" ToRole="Clients" />
           <NavigationProperty Name="Dishes" Relationship="RestaurantSmiPanModel.FK_Orders_Dishes" FromRole="Orders" ToRole="Dishes" />
         </EntityType>
@@ -319,24 +363,19 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Records" Relationship="RestaurantSmiPanModel.FK_Records_PaymentMethods" FromRole="PaymentMethods" ToRole="Records" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Checks" Relationship="RestaurantSmiPanModel.FK_Checks_PaymentMethods" FromRole="PaymentMethods" ToRole="Checks" />
         </EntityType>
         <EntityType Name="Records">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="ClientId" Type="Int32" />
-          <Property Name="TableId" Type="Int32" />
-          <Property Name="VisitTime" Type="Time" Precision="7" />
-          <Property Name="GuestBill" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="PaymentMethodId" Type="Int32" />
-          <Property Name="StatusId" Type="Int32" />
-          <Property Name="BonusesReceived" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="TableId" Type="Int32" Nullable="false" />
+          <Property Name="VisitTime" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Checks" Relationship="RestaurantSmiPanModel.FK_Checks_Records" FromRole="Records" ToRole="Checks" />
           <NavigationProperty Name="Clients" Relationship="RestaurantSmiPanModel.FK_Records_Clients" FromRole="Records" ToRole="Clients" />
-          <NavigationProperty Name="PaymentMethods" Relationship="RestaurantSmiPanModel.FK_Records_PaymentMethods" FromRole="Records" ToRole="PaymentMethods" />
-          <NavigationProperty Name="Statuses" Relationship="RestaurantSmiPanModel.FK_Records_Statuses" FromRole="Records" ToRole="Statuses" />
           <NavigationProperty Name="Tables" Relationship="RestaurantSmiPanModel.FK_Records_Tables" FromRole="Records" ToRole="Tables" />
         </EntityType>
         <EntityType Name="Statuses">
@@ -344,8 +383,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Records" Relationship="RestaurantSmiPanModel.FK_Records_Statuses" FromRole="Statuses" ToRole="Records" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Checks" Relationship="RestaurantSmiPanModel.FK_Checks_Statuses" FromRole="Statuses" ToRole="Checks" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -362,11 +401,48 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="IsReserved" Type="Boolean" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="IsReserved" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Records" Relationship="RestaurantSmiPanModel.FK_Records_Tables" FromRole="Tables" ToRole="Records" />
         </EntityType>
+        <Association Name="FK_Checks_PaymentMethods">
+          <End Type="RestaurantSmiPanModel.PaymentMethods" Role="PaymentMethods" Multiplicity="1" />
+          <End Type="RestaurantSmiPanModel.Checks" Role="Checks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethods">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Checks">
+              <PropertyRef Name="PaymentMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Checks_Records">
+          <End Type="RestaurantSmiPanModel.Records" Role="Records" Multiplicity="1" />
+          <End Type="RestaurantSmiPanModel.Checks" Role="Checks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Records">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Checks">
+              <PropertyRef Name="RecordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Checks_Statuses">
+          <End Type="RestaurantSmiPanModel.Statuses" Role="Statuses" Multiplicity="1" />
+          <End Type="RestaurantSmiPanModel.Checks" Role="Checks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Checks">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Orders_Clients">
-          <End Type="RestaurantSmiPanModel.Clients" Role="Clients" Multiplicity="0..1" />
+          <End Type="RestaurantSmiPanModel.Clients" Role="Clients" Multiplicity="1" />
           <End Type="RestaurantSmiPanModel.Orders" Role="Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
@@ -378,7 +454,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Records_Clients">
-          <End Type="RestaurantSmiPanModel.Clients" Role="Clients" Multiplicity="0..1" />
+          <End Type="RestaurantSmiPanModel.Clients" Role="Clients" Multiplicity="1" />
           <End Type="RestaurantSmiPanModel.Records" Role="Records" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
@@ -390,7 +466,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Dishes_DishTypes">
-          <End Type="RestaurantSmiPanModel.DishTypes" Role="DishTypes" Multiplicity="0..1" />
+          <End Type="RestaurantSmiPanModel.DishTypes" Role="DishTypes" Multiplicity="1" />
           <End Type="RestaurantSmiPanModel.Dishes" Role="Dishes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DishTypes">
@@ -402,7 +478,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Orders_Dishes">
-          <End Type="RestaurantSmiPanModel.Dishes" Role="Dishes" Multiplicity="0..1" />
+          <End Type="RestaurantSmiPanModel.Dishes" Role="Dishes" Multiplicity="1" />
           <End Type="RestaurantSmiPanModel.Orders" Role="Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Dishes">
@@ -413,32 +489,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Records_PaymentMethods">
-          <End Type="RestaurantSmiPanModel.PaymentMethods" Role="PaymentMethods" Multiplicity="0..1" />
-          <End Type="RestaurantSmiPanModel.Records" Role="Records" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PaymentMethods">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Records">
-              <PropertyRef Name="PaymentMethodId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Records_Statuses">
-          <End Type="RestaurantSmiPanModel.Statuses" Role="Statuses" Multiplicity="0..1" />
-          <End Type="RestaurantSmiPanModel.Records" Role="Records" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Statuses">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Records">
-              <PropertyRef Name="StatusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Records_Tables">
-          <End Type="RestaurantSmiPanModel.Tables" Role="Tables" Multiplicity="0..1" />
+          <End Type="RestaurantSmiPanModel.Tables" Role="Tables" Multiplicity="1" />
           <End Type="RestaurantSmiPanModel.Records" Role="Records" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tables">
@@ -449,7 +501,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -460,6 +512,18 @@
               <MappingFragment StoreEntitySet="Admins">
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Checks">
+            <EntityTypeMapping TypeName="RestaurantSmiPanModel.Checks">
+              <MappingFragment StoreEntitySet="Checks">
+                <ScalarProperty Name="BonusesReceived" ColumnName="BonusesReceived" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
+                <ScalarProperty Name="GuestBill" ColumnName="GuestBill" />
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -516,10 +580,6 @@
           <EntitySetMapping Name="Records">
             <EntityTypeMapping TypeName="RestaurantSmiPanModel.Records">
               <MappingFragment StoreEntitySet="Records">
-                <ScalarProperty Name="BonusesReceived" ColumnName="BonusesReceived" />
-                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-                <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
-                <ScalarProperty Name="GuestBill" ColumnName="GuestBill" />
                 <ScalarProperty Name="VisitTime" ColumnName="VisitTime" />
                 <ScalarProperty Name="TableId" ColumnName="TableId" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
@@ -550,6 +610,7 @@
             <EntityTypeMapping TypeName="RestaurantSmiPanModel.Tables">
               <MappingFragment StoreEntitySet="Tables">
                 <ScalarProperty Name="IsReserved" ColumnName="IsReserved" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -14,18 +14,20 @@ namespace Restaurant.Models
     
     public partial class Records
     {
-        public int Id { get; set; }
-        public Nullable<int> ClientId { get; set; }
-        public Nullable<int> TableId { get; set; }
-        public Nullable<System.TimeSpan> VisitTime { get; set; }
-        public Nullable<decimal> GuestBill { get; set; }
-        public Nullable<int> PaymentMethodId { get; set; }
-        public Nullable<int> StatusId { get; set; }
-        public Nullable<decimal> BonusesReceived { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Records()
+        {
+            this.Checks = new HashSet<Checks>();
+        }
     
+        public int Id { get; set; }
+        public int ClientId { get; set; }
+        public int TableId { get; set; }
+        public System.TimeSpan VisitTime { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Checks> Checks { get; set; }
         public virtual Clients Clients { get; set; }
-        public virtual PaymentMethods PaymentMethods { get; set; }
-        public virtual Statuses Statuses { get; set; }
         public virtual Tables Tables { get; set; }
     }
 }

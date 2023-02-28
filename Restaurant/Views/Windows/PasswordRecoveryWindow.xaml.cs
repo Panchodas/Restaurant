@@ -32,32 +32,39 @@ namespace Restaurant.Views.Windows
                 var logPass = App.context.Admins.FirstOrDefault(i => i.Login == MailTb.Text && i.Password == PasswordPb.Password);
                 if (logPass != null)
                 {
-                    //int adminId = App.context.Admins.Find(App.context.Admins.Where(i => i.Login == MailTb.Text && i.Password == PasswordPb.Password)).Id;
-                    var admin = App.context.Admins.Where(i => i.Login == MailTb.Text && i.Password == PasswordPb.Password).FirstOrDefault();
-                    App.context.Admins.Remove(admin);
-                    App.context.SaveChanges();
-                    Admins admins = new Admins()
+                    if (PasswordPb.Password != NewPasswordPb.Password)
                     {
-                        Login = MailTb.Text,
-                        Password = NewPasswordPb.Password
-                    };
-                    App.context.Admins.Add(admins);
-                    App.context.SaveChanges();
-                    MessageBox.Show("Пароль изменён");
-                    AuthentificationWindow authentification = new AuthentificationWindow();
-                    authentification.Show();
-                    Close();
+                        //int adminId = App.context.Admins.Find(App.context.Admins.Where(i => i.Login == MailTb.Text && i.Password == PasswordPb.Password)).Id;
+                        var admin = App.context.Admins.Where(i => i.Login == MailTb.Text && i.Password == PasswordPb.Password).FirstOrDefault();
+                        App.context.Admins.Remove(admin);
+                        App.context.SaveChanges();
+                        Admins admins = new Admins()
+                        {
+                            Login = MailTb.Text,
+                            Password = NewPasswordPb.Password
+                        };
+                        App.context.Admins.Add(admins);
+                        App.context.SaveChanges();
+                        MessageBox.Show("Пароль изменён");
+                        AuthentificationWindow authentification = new AuthentificationWindow();
+                        authentification.Show();
+                        Close();
 
-                    ////другой вариант
-                    //var db = App.context;
-                    //var deleteOrderDetails =
-                    //    from Admins in db.Admins
-                    //    where Admins.Login == MailTb.Text && Admins.Password == PasswordPb.Password
-                    //    select Admins;
-                    //foreach (var admin in deleteOrderDetails)
-                    //{
-                    //    db.Admins.Remove(admin);
-                    //}
+                        ////другой вариант
+                        //var db = App.context;
+                        //var deleteOrderDetails =
+                        //    from Admins in db.Admins
+                        //    where Admins.Login == MailTb.Text && Admins.Password == PasswordPb.Password
+                        //    select Admins;
+                        //foreach (var admin in deleteOrderDetails)
+                        //{
+                        //    db.Admins.Remove(admin);
+                        //}
+                    }
+                    else
+                    {
+                        MessageBox.Show("Не используйте старый пароль");
+                    }
                 }
                 else
                 {
@@ -90,18 +97,11 @@ namespace Restaurant.Views.Windows
 
         private void ChangePassword_Click(object sender, RoutedEventArgs e)
         {
-            if (PasswordPb.Password != NewPasswordPb.Password)
+            bool resp = false;
+            resp = PasswordCheck(resp);
+            if (resp == true)
             {
-                bool resp = false;
-                resp = PasswordCheck(resp);
-                if (resp == true)
-                {
-                    PasswordRecoveryMethod();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Не используйте старый пароль");
+                PasswordRecoveryMethod();
             }
         }
     }

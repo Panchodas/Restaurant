@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:Restaurant.Views.Windows"
         mc:Ignorable="d"
         Title="NavigationWindow"
-        Height="800"
-        Width="1600"
+        Height="400"
+        Width="800"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
@@ -41,22 +41,13 @@
                                     Binding="{Binding Clients.MiddleName}"/>
                 <DataGridTextColumn Header="Столик"
                                     Width="*"
-                                    Binding="{Binding TableId}"/>
+                                    Binding="{Binding Tables.Number}"/>
                 <DataGridTextColumn Header="Время"
                                     Width="*"
                                     Binding="{Binding VisitTime}"/>
-                <DataGridTextColumn Header="Счёт"
+                <!--<DataGridTextColumn Header="Номер счёта"
                                     Width="*"
-                                    Binding="{Binding GuestBill}"/>
-                <DataGridTextColumn Header="Способ оплаты"
-                                    Width="*"
-                                    Binding="{Binding PaymentMethods.Name}"/>
-                <DataGridTextColumn Header="Статус"
-                                    Width="*"
-                                    Binding="{Binding Statuses.Name}"/>
-                <DataGridTextColumn Header="Полученно бонусов"
-                                    Width="*"
-                                    Binding="{Binding BonusesReceived}"/>
+                                    Binding="{Binding Checks.Number}"/>-->
             </DataGrid.Columns>
         </DataGrid>
         <!--Нижняя строка-->
@@ -68,14 +59,14 @@
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <Button x:Name="BackBtn"
-                Content="Назад"
-                Width="100"
+                Content="Вернуться ко входу"
+                Width="130"
                 Click="BackBtn_Click"
                 HorizontalAlignment="Left"/>
             <Button x:Name="AddBtn"
                 Content="Добавить запись"
                 Width="120"
-                Click="BackBtn_Click"
+                Click="AddBtn_Click"
                 HorizontalAlignment="Right"
                 Grid.Column="3"/>
             
