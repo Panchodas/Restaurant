@@ -14,6 +14,6 @@ namespace Restaurant
     /// </summary>
     public partial class App : Application
     {
-        public static RestaurantSmiPanEntities context = new RestaurantSmiPanEntities();
+        public static user17Entities1 context = new user17Entities1();
     }
 }

@@ -13,10 +13,10 @@ namespace Restaurant.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RestaurantSmiPanEntities : DbContext
+    public partial class user17Entities1 : DbContext
     {
-        public RestaurantSmiPanEntities()
-            : base("name=RestaurantSmiPanEntities")
+        public user17Entities1()
+            : base("name=user17Entities1")
         {
         }
     

@@ -34,17 +34,35 @@ namespace Restaurant.Views.Windows
         }
         private void AddRecord()
         {
-            if (!(string.IsNullOrEmpty(SurnameTb.Text)
-                || string.IsNullOrEmpty(NameTb.Text)
-                || string.IsNullOrEmpty(MiddleNameTb.Text)
-                || string.IsNullOrEmpty(TableCmb.Text)
+            if (!(string.IsNullOrEmpty(TableCmb.Text)
+                || string.IsNullOrEmpty(ClientCmb.Text)
                 || string.IsNullOrEmpty(TimeTb.Text)))
             {
+                //Добавление записи
                 Records records = new Records()
                 {
-                    //ClientId = 
+                    ClientId = int.Parse(ClientCmb.Text),
+                    TableId = int.Parse(TableCmb.Text),
+                    VisitTime = TimeSpan.Parse(TimeTb.Text)
                 };
                 App.context.Records.Add(records);
+                App.context.SaveChanges();
+
+                //Сохранение Id
+                var tableId = App.context.Tables.Find(App.context.Tables.Where(i => i.Number == int.Parse(TableCmb.Text)).FirstOrDefault()).Id;
+
+                //Удаление стола
+                var table = App.context.Tables.Where(i => i.Number == int.Parse(TableCmb.Text)).FirstOrDefault();
+                App.context.Tables.Remove(table);
+                App.context.SaveChanges();
+
+                //Добавление стола
+                Tables tables = new Tables()
+                {
+                    Id = tableId,
+                    Number = int.Parse(TableCmb.Text),
+                    IsReserved = true
+                };
                 App.context.SaveChanges();
                 MessageBox.Show("Запись добавлена");
             }
