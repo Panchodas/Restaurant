@@ -46,6 +46,7 @@ namespace Restaurant.Views.Windows
                 MessageBox.Show("Запись добавлена");
                 NavigationWindow navigationWindow = new NavigationWindow();
                 navigationWindow.Show();
+                Close();
             }
             else
             {
