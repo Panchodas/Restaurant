@@ -1,8 +1,10 @@
 ﻿using Restaurant.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,14 +25,8 @@ namespace Restaurant.Views.Windows
         public AddRecordWindow()
         {
             InitializeComponent();
-            TableCmb.ItemsSource = App.context.Tables.Where(i => i.IsReserved == true).ToList();
-        }
-
-        private void BackBtn_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationWindow navigationWindow = new NavigationWindow();
-            navigationWindow.Show();
-            Close();
+            TableCmb.ItemsSource = App.context.Tables.Where(i => i.IsReserved == false).ToList();
+            ClientCmb.ItemsSource = App.context.Clients.ToList();
         }
         private void AddRecord()
         {
@@ -38,33 +34,18 @@ namespace Restaurant.Views.Windows
                 || string.IsNullOrEmpty(ClientCmb.Text)
                 || string.IsNullOrEmpty(TimeTb.Text)))
             {
-                //Добавление записи
                 Records records = new Records()
                 {
-                    ClientId = int.Parse(ClientCmb.Text),
-                    TableId = int.Parse(TableCmb.Text),
+                    ClientId = ((Models.Clients)(ClientCmb.SelectedItem)).Id,
+                    TableId = ((Models.Tables)(TableCmb.SelectedItem)).Id,
                     VisitTime = TimeSpan.Parse(TimeTb.Text)
                 };
                 App.context.Records.Add(records);
-                App.context.SaveChanges();
-
-                //Сохранение Id
-                var tableId = App.context.Tables.Find(App.context.Tables.Where(i => i.Number == int.Parse(TableCmb.Text)).FirstOrDefault()).Id;
-
-                //Удаление стола
-                var table = App.context.Tables.Where(i => i.Number == int.Parse(TableCmb.Text)).FirstOrDefault();
-                App.context.Tables.Remove(table);
-                App.context.SaveChanges();
-
-                //Добавление стола
-                Tables tables = new Tables()
-                {
-                    Id = tableId,
-                    Number = int.Parse(TableCmb.Text),
-                    IsReserved = true
-                };
+                App.context.Tables.First(i => i.Id == ((Models.Tables)(TableCmb.SelectedItem)).Id).IsReserved = true;
                 App.context.SaveChanges();
                 MessageBox.Show("Запись добавлена");
+                NavigationWindow navigationWindow = new NavigationWindow();
+                navigationWindow.Show();
             }
             else
             {
@@ -74,6 +55,12 @@ namespace Restaurant.Views.Windows
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
             AddRecord();
+        }
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationWindow navigationWindow = new NavigationWindow();
+            navigationWindow.Show();
+            Close();
         }
     }
 }

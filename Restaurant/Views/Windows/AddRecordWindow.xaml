@@ -59,8 +59,13 @@
                        Margin="10 0 0 0"/>
                 <ComboBox x:Name="ClientCmb"
                           Margin="10 0 10 0"
-                          Height="30"
-                          DisplayMemberPath="Number"/>
+                          Height="30">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding SNM}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </StackPanel>
             <StackPanel Grid.Row="1">
                 <Label Content="Столик"
