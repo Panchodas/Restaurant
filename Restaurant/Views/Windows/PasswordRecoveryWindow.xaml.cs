@@ -34,13 +34,8 @@ namespace Restaurant.Views.Windows
                 {
                     if (PasswordPb.Password != NewPasswordPb.Password)
                     {
-
-
-
-                        var admin = App.context.Admins.First(i => i.Login == MailTb.Text && i.Password == PasswordPb.Password).Password = NewPasswordPb.Password;
-
-
-
+                        App.context.Admins.First(i => i.Login == MailTb.Text && i.Password == PasswordPb.Password).Password = NewPasswordPb.Password;
+                        App.context.SaveChanges();
                         MessageBox.Show("Пароль изменён");
                         AuthentificationWindow authentification = new AuthentificationWindow();
                         authentification.Show();

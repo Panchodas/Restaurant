@@ -39,9 +39,6 @@
                 <DataGridTextColumn Header="Время"
                                     Width="*"
                                     Binding="{Binding VisitTime}"/>
-                <!--<DataGridTextColumn Header="Номер счёта"
-                                    Width="*"
-                                    Binding="{Binding Checks.Number}"/>-->
             </DataGrid.Columns>
         </DataGrid>
         <!--Нижняя строка-->

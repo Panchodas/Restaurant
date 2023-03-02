@@ -32,8 +32,7 @@ namespace Restaurant.Views.Windows
         }
         private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //RecordDg.SelectedItem
-            //IdColumn.
+            //int id = ((Models.Tables)(RecordDg.SelectedItem)).Id;
         }
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {

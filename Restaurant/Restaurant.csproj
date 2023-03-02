@@ -122,6 +122,9 @@
     <Compile Include="Models\Tables.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\AddCheckWindow.xaml.cs">
+      <DependentUpon>AddCheckWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\AddRecordWindow.xaml.cs">
       <DependentUpon>AddRecordWindow.xaml</DependentUpon>
     </Compile>
@@ -180,6 +183,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\Windows\AddCheckWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Windows\AddRecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
