@@ -36,12 +36,12 @@ namespace Restaurant.Views.Windows
             {
                 Records records = new Records()
                 {
-                    ClientId = ((Models.Clients)(ClientCmb.SelectedItem)).Id,
-                    TableId = ((Models.Tables)(TableCmb.SelectedItem)).Id,
+                    ClientId = ((Clients)ClientCmb.SelectedItem).Id,
+                    TableId = ((Tables)TableCmb.SelectedItem).Id,
                     VisitTime = TimeSpan.Parse(TimeTb.Text)
                 };
                 App.context.Records.Add(records);
-                App.context.Tables.First(i => i.Id == ((Models.Tables)(TableCmb.SelectedItem)).Id).IsReserved = true;
+                App.context.Tables.First(i => i.Id == ((Tables)TableCmb.SelectedItem).Id).IsReserved = true;
                 App.context.SaveChanges();
                 MessageBox.Show("Запись добавлена");
                 NavigationWindow navigationWindow = new NavigationWindow();

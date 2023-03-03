@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         <!--Средняя строка-->
         <DataGrid x:Name="RecordDg"
-                  IsReadOnly="False"
+                  IsReadOnly="True"
                   AutoGenerateColumns="False"
                   Grid.Row="1">
             <DataGrid.Resources>
@@ -48,11 +48,24 @@
                 Click="BackBtn_Click"
                 HorizontalAlignment="Left"
                 Grid.Row="2"/>
-        <Button x:Name="AddBtn"
+        <!--<StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Grid.Row="2">
+            <Button x:Name="AddRecordBtn"
+                    Content="Добавить запись"
+                    Width="120"
+                    Click="AddRecordBtn_Click"/>
+            --><!--<Button x:Name="AddCheckBtn"
+                    Content="Добавить запись"
+                    Width="120"
+                    Click="AddCheckBtn_Click"/>--><!--
+        </StackPanel>-->
+        <Button x:Name="AddRecordBtn"
+                HorizontalAlignment="Right"
+                Grid.Row="2"
                 Content="Добавить запись"
                 Width="120"
-                Click="AddBtn_Click"
-                HorizontalAlignment="Right"
-                Grid.Row="2"/>
+                Click="AddRecordBtn_Click"/>
+        
     </Grid>
 </Window>

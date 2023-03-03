@@ -23,14 +23,13 @@ namespace Restaurant.Views.Windows
         public AuthentificationWindow()
         {
             InitializeComponent();
-            
         }
         private void Auth()
         {
             //var admin = App.context.Admins.FirstOrDefault(i => i.Login == LoginTb.Text && i.Password == PasswordPb.Password);
             if (!(string.IsNullOrEmpty(LoginTb.Text) || string.IsNullOrEmpty(PasswordPb.Password)))
             {
-                if (App.context.Admins.FirstOrDefault(i => i.Login == LoginTb.Text && i.Password == PasswordPb.Password) != null)
+                if (App.context.Admins.First(i => i.Login == LoginTb.Text && i.Password == PasswordPb.Password) != null)
                 {
                     NavigationWindow navigationWindow = new NavigationWindow();
                     MessageBox.Show("Вы вошли");

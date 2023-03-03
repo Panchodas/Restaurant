@@ -6,23 +6,26 @@
         xmlns:local="clr-namespace:Restaurant.Views.Windows"
         mc:Ignorable="d"
         Title="AddCheckWindow"
-        Height="500"
+        Height="325"
         Width="300"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="0" />
                 <RowDefinition Height="70" />
                 <RowDefinition Height="70" />
                 <RowDefinition Height="70" />
-                <RowDefinition Height="70" />
-                <RowDefinition Height="70" />
-                <RowDefinition Height="70" />
+                <RowDefinition Height="30" />
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
-            <Label Grid.Row="0"
-                   Content="---"
-                   Name="RecordLbl"/>
+            <!--<StackPanel Grid.Row="0"
+                        Orientation="Horizontal">
+                <Label Grid.Row="0"
+                   Content="Id записи: "
+                   Margin="10 0 0 0"/>
+                <Label x:Name="RecordLbl"/>
+            </StackPanel>-->
             <StackPanel Grid.Row="1">
                 <Label Content="Счёт"
                        HorizontalAlignment="Left"
@@ -46,17 +49,20 @@
                 <ComboBox x:Name="StatusCmb"
                           Margin="10 0 10 0"
                           Height="30"
-                          DisplayMemberPath="Number"/>
+                          DisplayMemberPath="Name"/>
             </StackPanel>
             
-            <StackPanel Grid.Row="4">
-                <Label Content="Бонусы"
+            <StackPanel Grid.Row="4"
+                        Orientation="Horizontal">
+                <Label Content="Бонусы клиента: "
                        HorizontalAlignment="Left"
                        Margin="10 0 0 0"/>
-                <TextBlock x:Name="BonusTbl"/>
+                <Label x:Name="BonusLbl"/>
+                <Label Content=" + "/>
+                <Label x:Name="PlusBonusLbl"/>
             </StackPanel>
             
-            <Button Content="Назад"
+            <Button Content="Отмена"
                     Grid.Row="5"
                     HorizontalAlignment="Left"
                     Width="100"

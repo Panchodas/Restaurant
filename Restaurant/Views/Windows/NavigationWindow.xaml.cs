@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Restaurant.Classes;
+using Restaurant.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,9 +34,11 @@ namespace Restaurant.Views.Windows
         }
         private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //int id = ((Models.Tables)(RecordDg.SelectedItem)).Id;
+            AddCheckWindow addCheckWindow = new AddCheckWindow(((Records)RecordDg.SelectedItem).Clients.Id);
+            addCheckWindow.Show();
+            Close();
         }
-        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        private void AddRecordBtn_Click(object sender, RoutedEventArgs e)
         {
             AddRecordWindow addRecordWindow = new AddRecordWindow();
             addRecordWindow.Show();
