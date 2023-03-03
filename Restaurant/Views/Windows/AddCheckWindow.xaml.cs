@@ -21,7 +21,7 @@ namespace Restaurant.Views.Windows
     /// </summary>
     public partial class AddCheckWindow : Window
     {
-        public AddCheckWindow(int clientId)
+        public AddCheckWindow(int recordId, int clientId)
         {
             InitializeComponent();
             NavigationWindow navigationWindow = new NavigationWindow();
@@ -29,6 +29,8 @@ namespace Restaurant.Views.Windows
             StatusCmb.ItemsSource = App.context.Statuses.ToList();
             PaymentMethodCmb.Text = App.context.PaymentMethods.First(i => i.Id > -1).Name;
             StatusCmb.Text = App.context.Statuses.First(i => i.Id > -1).Name;
+            RecordLbl.Content = App.context.Records.First(i => i.Id == recordId).Id;
+            ClientLbl.Content = App.context.Clients.First(i => i.Id == clientId).Id;
             BonusLbl.Content = App.context.Clients.First(i => i.Id == clientId).Bonuses;
         }
         private void BackBtn_Click(object sender, RoutedEventArgs e)
@@ -39,7 +41,74 @@ namespace Restaurant.Views.Windows
         }
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (!(string.IsNullOrEmpty(GuestBillTb.Text)
+                || string.IsNullOrEmpty(PaymentMethodCmb.Text)
+                || string.IsNullOrEmpty(StatusCmb.Text)))
+            {
+                Checks checks = new Checks()
+                {
+                    RecordId = (int)RecordLbl.Content,
+                    GuestBill = int.Parse(GuestBillTb.Text),
+                    PaymentMethodId = int.Parse(PaymentMethodCmb.Text),
+                    StatusId = int.Parse(StatusCmb.Text),
+                    BonusesReceived = (int)PlusBonusLbl.Content
+                };
+                App.context.Checks.Add(checks);
+                if (PaymentMethodCmb.Text == "Бонусами")
+                {
+                    App.context.Clients.First(i => i.Id == (int)ClientLbl.Content).Bonuses = App.context.Clients.First(i => i.Id == (int)ClientLbl.Content).Bonuses - int.Parse(GuestBillTb.Text);
+                }
+                else
+                {
+                    App.context.Clients.First(i => i.Id == (int)ClientLbl.Content).Bonuses = App.context.Clients.First(i => i.Id == (int)ClientLbl.Content).Bonuses + (int)PlusBonusLbl.Content;
+                }
+                App.context.SaveChanges();
+                MessageBox.Show("Чек добавлен");
+                NavigationWindow navigationWindow = new NavigationWindow();
+                navigationWindow.Show();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Все поля должны быть заполнены");
+            }
+        }
+        private void GuestBillTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (PaymentMethodCmb.Text != "Бонусами")
+            {
+                if (!string.IsNullOrEmpty(GuestBillTb.Text))
+                {
+                    PlusBonusLbl.Content = decimal.Parse(GuestBillTb.Text) / 10;
+                }
+                else
+                {
+                    PlusBonusLbl.Content = "0";
+                }
+            }
+            else
+            {
+                PlusBonusLbl.Content = "0";
+            }
+        }
 
+        private void PaymentMethodCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (PaymentMethodCmb.SelectedIndex == 1)
+            {
+                PlusBonusLbl.Content = "0";
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(GuestBillTb.Text))
+                {
+                    PlusBonusLbl.Content = decimal.Parse(GuestBillTb.Text) / 10;
+                }
+                else
+                {
+                    PlusBonusLbl.Content = "0";
+                }
+            }
         }
     }
 }

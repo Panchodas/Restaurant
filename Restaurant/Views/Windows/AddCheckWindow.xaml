@@ -6,31 +6,42 @@
         xmlns:local="clr-namespace:Restaurant.Views.Windows"
         mc:Ignorable="d"
         Title="AddCheckWindow"
-        Height="325"
+        Height="355"
         Width="300"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0" />
+                <RowDefinition Height="30" />
                 <RowDefinition Height="70" />
                 <RowDefinition Height="70" />
                 <RowDefinition Height="70" />
                 <RowDefinition Height="30" />
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
-            <!--<StackPanel Grid.Row="0"
+            <StackPanel Grid.Row="0"
                         Orientation="Horizontal">
                 <Label Grid.Row="0"
                    Content="Id записи: "
                    Margin="10 0 0 0"/>
                 <Label x:Name="RecordLbl"/>
-            </StackPanel>-->
+            </StackPanel>
+            <StackPanel Grid.Row="0"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0 0 10 0">
+                <Label Grid.Row="0"
+                   Content="Id клиента: "
+                   Margin="0 0 0 0"/>
+                <Label x:Name="ClientLbl"/>
+            </StackPanel>
+            
             <StackPanel Grid.Row="1">
                 <Label Content="Счёт"
                        HorizontalAlignment="Left"
                        Margin="10 0 0 0"/>
-                <TextBox x:Name="GuestBillTb"/>
+                <TextBox x:Name="GuestBillTb"
+                         TextChanged="GuestBillTb_TextChanged"/>
             </StackPanel>
             <StackPanel Grid.Row="2">
                 <Label Content="Способ оплаты"
@@ -39,7 +50,8 @@
                 <ComboBox x:Name="PaymentMethodCmb"
                           Margin="10 0 10 0"
                           Height="30"
-                          DisplayMemberPath="Name">
+                          DisplayMemberPath="Name"
+                          SelectionChanged="PaymentMethodCmb_SelectionChanged">
                 </ComboBox>
             </StackPanel>
             <StackPanel Grid.Row="3">

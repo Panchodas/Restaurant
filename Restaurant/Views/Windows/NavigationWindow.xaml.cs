@@ -34,7 +34,7 @@ namespace Restaurant.Views.Windows
         }
         private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            AddCheckWindow addCheckWindow = new AddCheckWindow(((Records)RecordDg.SelectedItem).Clients.Id);
+            AddCheckWindow addCheckWindow = new AddCheckWindow(((Records)RecordDg.SelectedItem).Id, ((Records)RecordDg.SelectedItem).Clients.Id);
             addCheckWindow.Show();
             Close();
         }
