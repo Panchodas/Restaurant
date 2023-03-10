@@ -15,14 +15,12 @@ namespace Restaurant.Models
     public partial class Checks
     {
         public int Id { get; set; }
-        public int RecordId { get; set; }
-        public decimal GuestBill { get; set; }
-        public int PaymentMethodId { get; set; }
-        public int StatusId { get; set; }
-        public decimal BonusesReceived { get; set; }
+        public Nullable<int> RecordId { get; set; }
+        public Nullable<decimal> GuestBill { get; set; }
+        public Nullable<int> PaymentMethodId { get; set; }
+        public Nullable<decimal> BonusesReceived { get; set; }
     
         public virtual PaymentMethods PaymentMethods { get; set; }
         public virtual Records Records { get; set; }
-        public virtual Statuses Statuses { get; set; }
     }
 }

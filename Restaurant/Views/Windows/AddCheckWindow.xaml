@@ -6,14 +6,13 @@
         xmlns:local="clr-namespace:Restaurant.Views.Windows"
         mc:Ignorable="d"
         Title="AddCheckWindow"
-        Height="355"
+        Height="283"
         Width="300"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
-                <RowDefinition Height="70" />
                 <RowDefinition Height="70" />
                 <RowDefinition Height="70" />
                 <RowDefinition Height="30" />
@@ -35,7 +34,7 @@
                    Margin="0 0 0 0"/>
                 <Label x:Name="ClientLbl"/>
             </StackPanel>
-            
+
             <StackPanel Grid.Row="1">
                 <Label Content="Счёт"
                        HorizontalAlignment="Left"
@@ -54,17 +53,7 @@
                           SelectionChanged="PaymentMethodCmb_SelectionChanged">
                 </ComboBox>
             </StackPanel>
-            <StackPanel Grid.Row="3">
-                <Label Content="Статус платежа"
-                       HorizontalAlignment="Left"
-                       Margin="10 0 0 0"/>
-                <ComboBox x:Name="StatusCmb"
-                          Margin="10 0 10 0"
-                          Height="30"
-                          DisplayMemberPath="Name"/>
-            </StackPanel>
-            
-            <StackPanel Grid.Row="4"
+            <StackPanel Grid.Row="3"
                         Orientation="Horizontal">
                 <Label Content="Бонусы клиента: "
                        HorizontalAlignment="Left"
@@ -73,16 +62,16 @@
                 <Label Content=" + "/>
                 <Label x:Name="PlusBonusLbl"/>
             </StackPanel>
-            
+
             <Button Content="Отмена"
-                    Grid.Row="5"
+                    Grid.Row="4"
                     HorizontalAlignment="Left"
                     Width="100"
                     Margin="10 0 0 0"
                     Name="BackBtn"
                     Click="BackBtn_Click"/>
             <Button Content="Добавить"
-                    Grid.Row="5"
+                    Grid.Row="4"
                     HorizontalAlignment="Right"
                     Width="100"
                     Margin="0 0 10 0"

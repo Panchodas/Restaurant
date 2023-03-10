@@ -26,9 +26,7 @@ namespace Restaurant.Views.Windows
             InitializeComponent();
             NavigationWindow navigationWindow = new NavigationWindow();
             PaymentMethodCmb.ItemsSource = App.context.PaymentMethods.ToList();
-            StatusCmb.ItemsSource = App.context.Statuses.ToList();
             PaymentMethodCmb.Text = App.context.PaymentMethods.First(i => i.Id > -1).Name;
-            StatusCmb.Text = App.context.Statuses.First(i => i.Id > -1).Name;
             RecordLbl.Content = App.context.Records.First(i => i.Id == recordId).Id;
             ClientLbl.Content = App.context.Clients.First(i => i.Id == clientId).Id;
             BonusLbl.Content = App.context.Clients.First(i => i.Id == clientId).Bonuses;
@@ -42,16 +40,14 @@ namespace Restaurant.Views.Windows
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!(string.IsNullOrEmpty(GuestBillTb.Text)
-                || string.IsNullOrEmpty(PaymentMethodCmb.Text)
-                || string.IsNullOrEmpty(StatusCmb.Text)))
+                || string.IsNullOrEmpty(PaymentMethodCmb.Text)))
             {
                 Checks checks = new Checks()
                 {
                     RecordId = (int)RecordLbl.Content,
-                    GuestBill = int.Parse(GuestBillTb.Text),
-                    PaymentMethodId = int.Parse(PaymentMethodCmb.Text),
-                    StatusId = int.Parse(StatusCmb.Text),
-                    BonusesReceived = (int)PlusBonusLbl.Content
+                    GuestBill = decimal.Parse(GuestBillTb.Text),
+                    PaymentMethodId = ((PaymentMethods)PaymentMethodCmb.SelectedItem).Id,
+                    BonusesReceived = Convert.ToDecimal(PlusBonusLbl.Content)
                 };
                 App.context.Checks.Add(checks);
                 if (PaymentMethodCmb.Text == "Бонусами")
@@ -60,7 +56,7 @@ namespace Restaurant.Views.Windows
                 }
                 else
                 {
-                    App.context.Clients.First(i => i.Id == (int)ClientLbl.Content).Bonuses = App.context.Clients.First(i => i.Id == (int)ClientLbl.Content).Bonuses + (int)PlusBonusLbl.Content;
+                    App.context.Clients.First(i => i.Id == (int)ClientLbl.Content).Bonuses = App.context.Clients.First(i => i.Id == (int)ClientLbl.Content).Bonuses + (decimal)PlusBonusLbl.Content;
                 }
                 App.context.SaveChanges();
                 MessageBox.Show("Чек добавлен");
@@ -83,12 +79,12 @@ namespace Restaurant.Views.Windows
                 }
                 else
                 {
-                    PlusBonusLbl.Content = "0";
+                    PlusBonusLbl.Content = 0;
                 }
             }
             else
             {
-                PlusBonusLbl.Content = "0";
+                PlusBonusLbl.Content = 0;
             }
         }
 
@@ -96,7 +92,7 @@ namespace Restaurant.Views.Windows
         {
             if (PaymentMethodCmb.SelectedIndex == 1)
             {
-                PlusBonusLbl.Content = "0";
+                PlusBonusLbl.Content = 0;
             }
             else
             {
@@ -106,7 +102,7 @@ namespace Restaurant.Views.Windows
                 }
                 else
                 {
-                    PlusBonusLbl.Content = "0";
+                    PlusBonusLbl.Content = 0;
                 }
             }
         }
