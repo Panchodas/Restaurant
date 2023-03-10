@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище user17Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище user17Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admins">
           <Key>
             <PropertyRef Name="Id" />
@@ -19,9 +19,9 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RecordId" Type="int" />
-          <Property Name="GuestBill" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GuestBill" Type="decimal" Precision="18" Scale="1" />
           <Property Name="PaymentMethodId" Type="int" />
-          <Property Name="BonusesReceived" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="BonusesReceived" Type="decimal" Precision="18" Scale="1" />
         </EntityType>
         <EntityType Name="Clients">
           <Key>
@@ -73,6 +73,14 @@
           <Property Name="ClientId" Type="int" Nullable="false" />
           <Property Name="TableId" Type="int" Nullable="false" />
           <Property Name="VisitTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Statuses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Tables">
           <Key>
@@ -154,6 +162,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Records_Statuses">
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
+          <End Role="Records" Type="Self.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Records_Tables">
           <End Role="Tables" Type="Self.Tables" Multiplicity="1" />
           <End Role="Records" Type="Self.Records" Multiplicity="*" />
@@ -175,6 +195,7 @@
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethods" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Records" EntityType="Self.Records" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tables" EntityType="Self.Tables" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Checks_PaymentMethods" Association="Self.FK_Checks_PaymentMethods">
             <End Role="PaymentMethods" EntitySet="PaymentMethods" />
@@ -200,61 +221,27 @@
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Records" EntitySet="Records" />
           </AssociationSet>
+          <AssociationSet Name="FK_Records_Statuses" Association="Self.FK_Records_Statuses">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
           <AssociationSet Name="FK_Records_Tables" Association="Self.FK_Records_Tables">
             <End Role="Tables" EntitySet="Tables" />
             <End Role="Records" EntitySet="Records" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="user17Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="user17Entities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Admins" EntityType="user17Model.Admins" />
-          <EntitySet Name="Checks" EntityType="user17Model.Checks" />
-          <EntitySet Name="Clients" EntityType="user17Model.Clients" />
-          <EntitySet Name="Dishes" EntityType="user17Model.Dishes" />
-          <EntitySet Name="DishTypes" EntityType="user17Model.DishTypes" />
-          <EntitySet Name="Orders" EntityType="user17Model.Orders" />
-          <EntitySet Name="PaymentMethods" EntityType="user17Model.PaymentMethods" />
-          <EntitySet Name="Records" EntityType="user17Model.Records" />
-          <EntitySet Name="Tables" EntityType="user17Model.Tables" />
-          <AssociationSet Name="FK_Checks_PaymentMethods" Association="user17Model.FK_Checks_PaymentMethods">
-            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
-            <End Role="Checks" EntitySet="Checks" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Checks_Records" Association="user17Model.FK_Checks_Records">
-            <End Role="Records" EntitySet="Records" />
-            <End Role="Checks" EntitySet="Checks" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Orders_Clients" Association="user17Model.FK_Orders_Clients">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Records_Clients" Association="user17Model.FK_Records_Clients">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="Records" EntitySet="Records" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Dishes_DishTypes" Association="user17Model.FK_Dishes_DishTypes">
-            <End Role="DishTypes" EntitySet="DishTypes" />
-            <End Role="Dishes" EntitySet="Dishes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Orders_Dishes" Association="user17Model.FK_Orders_Dishes">
-            <End Role="Dishes" EntitySet="Dishes" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Records_Tables" Association="user17Model.FK_Records_Tables">
-            <End Role="Tables" EntitySet="Tables" />
-            <End Role="Records" EntitySet="Records" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="Admins">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Login" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Checks">
           <Key>
@@ -262,43 +249,43 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RecordId" Type="Int32" />
-          <Property Name="GuestBill" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GuestBill" Type="Decimal" Precision="18" Scale="1" />
           <Property Name="PaymentMethodId" Type="Int32" />
-          <Property Name="BonusesReceived" Type="Decimal" Precision="18" Scale="2" />
-          <NavigationProperty Name="PaymentMethods" Relationship="user17Model.FK_Checks_PaymentMethods" FromRole="Checks" ToRole="PaymentMethods" />
-          <NavigationProperty Name="Records" Relationship="user17Model.FK_Checks_Records" FromRole="Checks" ToRole="Records" />
+          <Property Name="BonusesReceived" Type="Decimal" Precision="18" Scale="1" />
+          <NavigationProperty Name="PaymentMethods" Relationship="Self.FK_Checks_PaymentMethods" FromRole="Checks" ToRole="PaymentMethods" />
+          <NavigationProperty Name="Records" Relationship="Self.FK_Checks_Records" FromRole="Checks" ToRole="Records" />
         </EntityType>
         <EntityType Name="Clients">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SNM" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Bonuses" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="SNM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Bonuses" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Orders" Relationship="user17Model.FK_Orders_Clients" FromRole="Clients" ToRole="Orders" />
-          <NavigationProperty Name="Records" Relationship="user17Model.FK_Records_Clients" FromRole="Clients" ToRole="Records" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Clients" FromRole="Clients" ToRole="Orders" />
+          <NavigationProperty Name="Records" Relationship="Self.FK_Records_Clients" FromRole="Clients" ToRole="Records" />
         </EntityType>
         <EntityType Name="Dishes">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Gramming" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Сomposition" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="DishTypeId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="DishTypes" Relationship="user17Model.FK_Dishes_DishTypes" FromRole="Dishes" ToRole="DishTypes" />
-          <NavigationProperty Name="Orders" Relationship="user17Model.FK_Orders_Dishes" FromRole="Dishes" ToRole="Orders" />
+          <NavigationProperty Name="DishTypes" Relationship="Self.FK_Dishes_DishTypes" FromRole="Dishes" ToRole="DishTypes" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Dishes" FromRole="Dishes" ToRole="Orders" />
         </EntityType>
         <EntityType Name="DishTypes">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Dishes" Relationship="user17Model.FK_Dishes_DishTypes" FromRole="DishTypes" ToRole="Dishes" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Dishes" Relationship="Self.FK_Dishes_DishTypes" FromRole="DishTypes" ToRole="Dishes" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -307,16 +294,16 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ClientId" Type="Int32" Nullable="false" />
           <Property Name="DishId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Clients" Relationship="user17Model.FK_Orders_Clients" FromRole="Orders" ToRole="Clients" />
-          <NavigationProperty Name="Dishes" Relationship="user17Model.FK_Orders_Dishes" FromRole="Orders" ToRole="Dishes" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_Orders_Clients" FromRole="Orders" ToRole="Clients" />
+          <NavigationProperty Name="Dishes" Relationship="Self.FK_Orders_Dishes" FromRole="Orders" ToRole="Dishes" />
         </EntityType>
         <EntityType Name="PaymentMethods">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Checks" Relationship="user17Model.FK_Checks_PaymentMethods" FromRole="PaymentMethods" ToRole="Checks" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Checks" Relationship="Self.FK_Checks_PaymentMethods" FromRole="PaymentMethods" ToRole="Checks" />
         </EntityType>
         <EntityType Name="Records">
           <Key>
@@ -326,9 +313,19 @@
           <Property Name="ClientId" Type="Int32" Nullable="false" />
           <Property Name="TableId" Type="Int32" Nullable="false" />
           <Property Name="VisitTime" Type="Time" Nullable="false" Precision="7" />
-          <NavigationProperty Name="Checks" Relationship="user17Model.FK_Checks_Records" FromRole="Records" ToRole="Checks" />
-          <NavigationProperty Name="Clients" Relationship="user17Model.FK_Records_Clients" FromRole="Records" ToRole="Clients" />
-          <NavigationProperty Name="Tables" Relationship="user17Model.FK_Records_Tables" FromRole="Records" ToRole="Tables" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Checks" Relationship="Self.FK_Checks_Records" FromRole="Records" ToRole="Checks" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_Records_Clients" FromRole="Records" ToRole="Clients" />
+          <NavigationProperty Name="Statuses" Relationship="Self.FK_Records_Statuses" FromRole="Records" ToRole="Statuses" />
+          <NavigationProperty Name="Tables" Relationship="Self.FK_Records_Tables" FromRole="Records" ToRole="Tables" />
+        </EntityType>
+        <EntityType Name="Statuses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Records" Relationship="Self.FK_Records_Statuses" FromRole="Statuses" ToRole="Records" />
         </EntityType>
         <EntityType Name="Tables">
           <Key>
@@ -337,11 +334,11 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Number" Type="Int32" Nullable="false" />
           <Property Name="IsReserved" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Records" Relationship="user17Model.FK_Records_Tables" FromRole="Tables" ToRole="Records" />
+          <NavigationProperty Name="Records" Relationship="Self.FK_Records_Tables" FromRole="Tables" ToRole="Records" />
         </EntityType>
         <Association Name="FK_Checks_PaymentMethods">
-          <End Type="user17Model.PaymentMethods" Role="PaymentMethods" Multiplicity="0..1" />
-          <End Type="user17Model.Checks" Role="Checks" Multiplicity="*" />
+          <End Role="PaymentMethods" Type="Self.PaymentMethods" Multiplicity="0..1" />
+          <End Role="Checks" Type="Self.Checks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PaymentMethods">
               <PropertyRef Name="Id" />
@@ -352,8 +349,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Checks_Records">
-          <End Type="user17Model.Records" Role="Records" Multiplicity="0..1" />
-          <End Type="user17Model.Checks" Role="Checks" Multiplicity="*" />
+          <End Role="Records" Type="Self.Records" Multiplicity="0..1" />
+          <End Role="Checks" Type="Self.Checks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Records">
               <PropertyRef Name="Id" />
@@ -364,8 +361,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Orders_Clients">
-          <End Type="user17Model.Clients" Role="Clients" Multiplicity="1" />
-          <End Type="user17Model.Orders" Role="Orders" Multiplicity="*" />
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
               <PropertyRef Name="Id" />
@@ -376,8 +373,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Records_Clients">
-          <End Type="user17Model.Clients" Role="Clients" Multiplicity="1" />
-          <End Type="user17Model.Records" Role="Records" Multiplicity="*" />
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Records" Type="Self.Records" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
               <PropertyRef Name="Id" />
@@ -388,8 +385,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Dishes_DishTypes">
-          <End Type="user17Model.DishTypes" Role="DishTypes" Multiplicity="1" />
-          <End Type="user17Model.Dishes" Role="Dishes" Multiplicity="*" />
+          <End Role="DishTypes" Type="Self.DishTypes" Multiplicity="1" />
+          <End Role="Dishes" Type="Self.Dishes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DishTypes">
               <PropertyRef Name="Id" />
@@ -400,8 +397,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Orders_Dishes">
-          <End Type="user17Model.Dishes" Role="Dishes" Multiplicity="1" />
-          <End Type="user17Model.Orders" Role="Orders" Multiplicity="*" />
+          <End Role="Dishes" Type="Self.Dishes" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Dishes">
               <PropertyRef Name="Id" />
@@ -411,9 +408,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Records_Statuses">
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
+          <End Role="Records" Type="Self.Records" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Records">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Records_Tables">
-          <End Type="user17Model.Tables" Role="Tables" Multiplicity="1" />
-          <End Type="user17Model.Records" Role="Records" Multiplicity="*" />
+          <End Role="Tables" Type="Self.Tables" Multiplicity="1" />
+          <End Role="Records" Type="Self.Records" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tables">
               <PropertyRef Name="Id" />
@@ -423,95 +432,148 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+        <EntityContainer Name="user17Entities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admins" />
+          <EntitySet Name="Checks" EntityType="Self.Checks" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" />
+          <EntitySet Name="Dishes" EntityType="Self.Dishes" />
+          <EntitySet Name="DishTypes" EntityType="Self.DishTypes" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethods" />
+          <EntitySet Name="Records" EntityType="Self.Records" />
+          <EntitySet Name="Statuses" EntityType="Self.Statuses" />
+          <EntitySet Name="Tables" EntityType="Self.Tables" />
+          <AssociationSet Name="FK_Checks_PaymentMethods" Association="Self.FK_Checks_PaymentMethods">
+            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
+            <End Role="Checks" EntitySet="Checks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Checks_Records" Association="Self.FK_Checks_Records">
+            <End Role="Records" EntitySet="Records" />
+            <End Role="Checks" EntitySet="Checks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Clients" Association="Self.FK_Orders_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_Clients" Association="Self.FK_Records_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dishes_DishTypes" Association="Self.FK_Dishes_DishTypes">
+            <End Role="DishTypes" EntitySet="DishTypes" />
+            <End Role="Dishes" EntitySet="Dishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Dishes" Association="Self.FK_Orders_Dishes">
+            <End Role="Dishes" EntitySet="Dishes" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_Statuses" Association="Self.FK_Records_Statuses">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Records_Tables" Association="Self.FK_Records_Tables">
+            <End Role="Tables" EntitySet="Tables" />
+            <End Role="Records" EntitySet="Records" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище user17ModelContainer" CdmEntityContainer="user17Entities1">
+        <EntityContainerMapping StorageEntityContainer="Хранилище user17ModelContainer" CdmEntityContainer="user17Entities2">
           <EntitySetMapping Name="Admins">
             <EntityTypeMapping TypeName="user17Model.Admins">
               <MappingFragment StoreEntitySet="Admins">
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Checks">
             <EntityTypeMapping TypeName="user17Model.Checks">
               <MappingFragment StoreEntitySet="Checks">
-                <ScalarProperty Name="BonusesReceived" ColumnName="BonusesReceived" />
-                <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
-                <ScalarProperty Name="GuestBill" ColumnName="GuestBill" />
-                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+                <ScalarProperty Name="GuestBill" ColumnName="GuestBill" />
+                <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
+                <ScalarProperty Name="BonusesReceived" ColumnName="BonusesReceived" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Clients">
             <EntityTypeMapping TypeName="user17Model.Clients">
               <MappingFragment StoreEntitySet="Clients">
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="Bonuses" ColumnName="Bonuses" />
-                <ScalarProperty Name="SNM" ColumnName="SNM" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SNM" ColumnName="SNM" />
+                <ScalarProperty Name="Bonuses" ColumnName="Bonuses" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Dishes">
             <EntityTypeMapping TypeName="user17Model.Dishes">
               <MappingFragment StoreEntitySet="Dishes">
-                <ScalarProperty Name="DishTypeId" ColumnName="DishTypeId" />
-                <ScalarProperty Name="Сomposition" ColumnName="Сomposition" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Gramming" ColumnName="Gramming" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Gramming" ColumnName="Gramming" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Сomposition" ColumnName="Сomposition" />
+                <ScalarProperty Name="DishTypeId" ColumnName="DishTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DishTypes">
             <EntityTypeMapping TypeName="user17Model.DishTypes">
               <MappingFragment StoreEntitySet="DishTypes">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="user17Model.Orders">
               <MappingFragment StoreEntitySet="Orders">
-                <ScalarProperty Name="DishId" ColumnName="DishId" />
-                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="DishId" ColumnName="DishId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PaymentMethods">
             <EntityTypeMapping TypeName="user17Model.PaymentMethods">
               <MappingFragment StoreEntitySet="PaymentMethods">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Records">
             <EntityTypeMapping TypeName="user17Model.Records">
               <MappingFragment StoreEntitySet="Records">
-                <ScalarProperty Name="VisitTime" ColumnName="VisitTime" />
-                <ScalarProperty Name="TableId" ColumnName="TableId" />
-                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="TableId" ColumnName="TableId" />
+                <ScalarProperty Name="VisitTime" ColumnName="VisitTime" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Statuses">
+            <EntityTypeMapping TypeName="user17Model.Statuses">
+              <MappingFragment StoreEntitySet="Statuses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tables">
             <EntityTypeMapping TypeName="user17Model.Tables">
               <MappingFragment StoreEntitySet="Tables">
-                <ScalarProperty Name="IsReserved" ColumnName="IsReserved" />
-                <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="IsReserved" ColumnName="IsReserved" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

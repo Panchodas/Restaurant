@@ -48,18 +48,6 @@
                 Click="BackBtn_Click"
                 HorizontalAlignment="Left"
                 Grid.Row="2"/>
-        <!--<StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Right"
-                    Grid.Row="2">
-            <Button x:Name="AddRecordBtn"
-                    Content="Добавить запись"
-                    Width="120"
-                    Click="AddRecordBtn_Click"/>
-            --><!--<Button x:Name="AddCheckBtn"
-                    Content="Добавить запись"
-                    Width="120"
-                    Click="AddCheckBtn_Click"/>--><!--
-        </StackPanel>-->
         <Button x:Name="AddRecordBtn"
                 HorizontalAlignment="Right"
                 Grid.Row="2"

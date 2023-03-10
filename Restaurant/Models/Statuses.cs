@@ -12,24 +12,18 @@ namespace Restaurant.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Records
+    public partial class Statuses
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Records()
+        public Statuses()
         {
-            this.Checks = new HashSet<Checks>();
+            this.Records = new HashSet<Records>();
         }
     
         public int Id { get; set; }
-        public int ClientId { get; set; }
-        public int TableId { get; set; }
-        public System.TimeSpan VisitTime { get; set; }
-        public int StatusId { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Checks> Checks { get; set; }
-        public virtual Clients Clients { get; set; }
-        public virtual Statuses Statuses { get; set; }
-        public virtual Tables Tables { get; set; }
+        public virtual ICollection<Records> Records { get; set; }
     }
 }

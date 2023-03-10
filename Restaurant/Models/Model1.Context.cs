@@ -13,10 +13,10 @@ namespace Restaurant.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class user17Entities1 : DbContext
+    public partial class user17Entities2 : DbContext
     {
-        public user17Entities1()
-            : base("name=user17Entities1")
+        public user17Entities2()
+            : base("name=user17Entities2")
         {
         }
     
@@ -33,6 +33,7 @@ namespace Restaurant.Models
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<PaymentMethods> PaymentMethods { get; set; }
         public virtual DbSet<Records> Records { get; set; }
+        public virtual DbSet<Statuses> Statuses { get; set; }
         public virtual DbSet<Tables> Tables { get; set; }
     }
 }
