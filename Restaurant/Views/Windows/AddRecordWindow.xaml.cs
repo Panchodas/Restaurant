@@ -38,7 +38,8 @@ namespace Restaurant.Views.Windows
                 {
                     ClientId = ((Clients)ClientCmb.SelectedItem).Id,
                     TableId = ((Tables)TableCmb.SelectedItem).Id,
-                    VisitTime = TimeSpan.Parse(TimeTb.Text)
+                    VisitTime = TimeSpan.Parse(TimeTb.Text),
+                    StatusId = 1
                 };
                 App.context.Records.Add(records);
                 App.context.Tables.First(i => i.Id == ((Tables)TableCmb.SelectedItem).Id).IsReserved = true;

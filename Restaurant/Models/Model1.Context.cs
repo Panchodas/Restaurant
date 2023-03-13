@@ -34,6 +34,7 @@ namespace Restaurant.Models
         public virtual DbSet<PaymentMethods> PaymentMethods { get; set; }
         public virtual DbSet<Records> Records { get; set; }
         public virtual DbSet<Statuses> Statuses { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tables> Tables { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Restaurant.Classes;
-using Restaurant.Models;
+﻿using Restaurant.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,8 +32,6 @@ namespace Restaurant.Views.Windows
         }
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationWindow navigationWindow = new NavigationWindow();
-            navigationWindow.Show();
             Close();
         }
         private void AddBtn_Click(object sender, RoutedEventArgs e)
@@ -60,8 +57,8 @@ namespace Restaurant.Views.Windows
                 }
                 App.context.SaveChanges();
                 MessageBox.Show("Чек добавлен");
-                NavigationWindow navigationWindow = new NavigationWindow();
-                navigationWindow.Show();
+                //NavigationWindow navigationWindow = new NavigationWindow();
+                //navigationWindow.Show();
                 Close();
             }
             else

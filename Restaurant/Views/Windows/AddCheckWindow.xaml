@@ -6,9 +6,12 @@
         xmlns:local="clr-namespace:Restaurant.Views.Windows"
         mc:Ignorable="d"
         Title="AddCheckWindow"
-        Height="283"
-        Width="300"
-        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Height="254"
+        Width="230"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        ShowInTaskbar="False" BorderThickness="1">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>

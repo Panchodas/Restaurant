@@ -1,0 +1,34 @@
+﻿<Window x:Class="Restaurant.Views.Windows.RecordActionSelectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Restaurant.Views.Windows"
+        mc:Ignorable="d"
+        Title="RecordActionSelectWindow"
+        Height="50"
+        Width="350"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False" BorderThickness="1">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Button x:Name="BackBtn"
+                Content="Отмена"
+                Click="BackBtn_Click"
+                Grid.Column="0"/>
+        <Button x:Name="CheckAddBtn"
+                Content="Добавить чек"
+                Click="CheckAddBtn_Click"
+                Grid.Column="1"/>
+        <Button x:Name="CloseRecordBtn"
+                Content="Закрыть запись"
+                Click="CloseRecordBtn_Click"
+                Grid.Column="2"/>
+    </Grid>
+</Window>

@@ -8,13 +8,32 @@
         Title="NavigationWindow"
         Height="400"
         Width="500"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ShowInTaskbar="False">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition Height="6*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
+        <!--Верхняя строка-->
+        <StackPanel Orientation="Horizontal">
+            <TextBox x:Name="SearchTb"
+                     Width="100"
+                     Height="30"
+                     Margin="10 0 5 0"
+                     TextChanged="SearchTb_TextChanged"/>
+            <Button x:Name="SearchBtn"
+                    Content="Поиск"
+                    Width="60"
+                    Margin="0"
+                    Click="SearchBtn_Click"/>
+        </StackPanel>
+        <Button x:Name="UpdateBtn"
+                Click="UpdateBtn_Click"
+                HorizontalAlignment="Right"
+                Width="80"
+                Content="Обновить"/>
         <!--Средняя строка-->
         <DataGrid x:Name="RecordDg"
                   IsReadOnly="True"
@@ -30,7 +49,7 @@
                                     Width="*"
                                     Binding="{Binding Id}"
                                     x:Name="IdColumn"/>
-                <DataGridTextColumn Header="Фамилия"
+                <DataGridTextColumn Header="ФИО"
                                     Width="*"
                                     Binding="{Binding Clients.SNM}"/>
                 <DataGridTextColumn Header="Столик"
@@ -39,21 +58,36 @@
                 <DataGridTextColumn Header="Время"
                                     Width="*"
                                     Binding="{Binding VisitTime}"/>
+                <DataGridTextColumn Header="Статус"
+                                    Width="*"
+                                    Binding="{Binding Statuses.Name}"/>
             </DataGrid.Columns>
         </DataGrid>
         <!--Нижняя строка-->
-        <Button x:Name="BackBtn"
-                Content="Вернуться ко входу"
-                Width="130"
-                Click="BackBtn_Click"
-                HorizontalAlignment="Left"
-                Grid.Row="2"/>
-        <Button x:Name="AddRecordBtn"
-                HorizontalAlignment="Right"
-                Grid.Row="2"
-                Content="Добавить запись"
-                Width="120"
-                Click="AddRecordBtn_Click"/>
-        
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="BackBtn"
+                    Content="Вернуться ко входу"
+                    Width="130"
+                    Click="BackBtn_Click"
+                    HorizontalAlignment="Left"
+                    Grid.Column="0"/>
+            <Button x:Name="SeeCheckBtn"
+                    Content="Просмотреть чеки"
+                    Width="130"
+                    Click="SeeCheckBtn_Click"
+                    HorizontalAlignment="Center"
+                    Grid.Column="1"/>
+            <Button x:Name="AddRecordBtn"
+                    HorizontalAlignment="Right"
+                    Grid.Column="2"
+                    Content="Добавить запись"
+                    Width="120"
+                    Click="AddRecordBtn_Click"/>
+        </Grid>
     </Grid>
 </Window>

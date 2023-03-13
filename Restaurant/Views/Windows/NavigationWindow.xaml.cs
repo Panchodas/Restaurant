@@ -1,5 +1,4 @@
-﻿using Restaurant.Classes;
-using Restaurant.Models;
+﻿using Restaurant.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,15 +33,42 @@ namespace Restaurant.Views.Windows
         }
         private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            AddCheckWindow addCheckWindow = new AddCheckWindow(((Records)RecordDg.SelectedItem).Id, ((Records)RecordDg.SelectedItem).Clients.Id);
-            addCheckWindow.Show();
-            Close();
+            if(((Records)RecordDg.SelectedItem).StatusId != 2)
+            {
+                RecordActionSelectWindow recordActionSelectWindow = new RecordActionSelectWindow(((Records)RecordDg.SelectedItem).Id, ((Records)RecordDg.SelectedItem).Clients.Id);
+                recordActionSelectWindow.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Эта запись уже закрыта");
+            }
         }
         private void AddRecordBtn_Click(object sender, RoutedEventArgs e)
         {
             AddRecordWindow addRecordWindow = new AddRecordWindow();
             addRecordWindow.Show();
             Close();
+        }
+
+        private void SearchTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+        }
+
+        private void SearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            RecordDg.ItemsSource = App.context.Records
+                .Where(i => i.Clients.SNM == SearchTb.Text || i.Tables.Number == SearchTb.Text || i.Statuses.Name == SearchTb.Text).ToList();
+        }
+
+        private void UpdateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            RecordDg.ItemsSource = App.context.Records.ToList();
+        }
+
+        private void SeeCheckBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

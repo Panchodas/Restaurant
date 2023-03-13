@@ -4,25 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f12ac535222e4e87a63804fe9be79024" Name="Diagram1">
-        <EntityTypeShape EntityType="user17Model.Admins" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="user17Model.Checks" Width="1.5" PointX="8.25" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="user17Model.Clients" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="user17Model.Dishes" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="user17Model.DishTypes" Width="1.5" PointX="1.5" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="user17Model.Orders" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="user17Model.PaymentMethods" Width="1.5" PointX="6" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="user17Model.Records" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="user17Model.Statuses" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="user17Model.Tables" Width="1.5" PointX="3.75" PointY="7.125" IsExpanded="true" />
-        <AssociationConnector Association="user17Model.FK_Checks_PaymentMethods" ManuallyRouted="false" />
-        <AssociationConnector Association="user17Model.FK_Checks_Records" ManuallyRouted="false" />
-        <AssociationConnector Association="user17Model.FK_Orders_Clients" ManuallyRouted="false" />
-        <AssociationConnector Association="user17Model.FK_Records_Clients" ManuallyRouted="false" />
-        <AssociationConnector Association="user17Model.FK_Dishes_DishTypes" ManuallyRouted="false" />
-        <AssociationConnector Association="user17Model.FK_Orders_Dishes" ManuallyRouted="false" />
-        <AssociationConnector Association="user17Model.FK_Records_Statuses" ManuallyRouted="false" />
-        <AssociationConnector Association="user17Model.FK_Records_Tables" ManuallyRouted="false" />
+      <Diagram DiagramId="f12ac535222e4e87a63804fe9be79024" Name="Diagram1" ZoomLevel="35">
+        <EntityTypeShape EntityType="user17Model.Admins" Width="1.5" PointX="5.75" PointY="7.75" />
+        <EntityTypeShape EntityType="user17Model.Checks" Width="1.5" PointX="8.25" PointY="3.625" />
+        <EntityTypeShape EntityType="user17Model.Clients" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="user17Model.Dishes" Width="1.5" PointX="0.75" PointY="8.5" />
+        <EntityTypeShape EntityType="user17Model.DishTypes" Width="1.5" PointX="1.5" PointY="12" />
+        <EntityTypeShape EntityType="user17Model.Orders" Width="1.5" PointX="3" PointY="3.875" />
+        <EntityTypeShape EntityType="user17Model.PaymentMethods" Width="1.5" PointX="6" PointY="1" />
+        <EntityTypeShape EntityType="user17Model.Records" Width="1.5" PointX="6" PointY="3.5" />
+        <EntityTypeShape EntityType="user17Model.Statuses" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="user17Model.sysdiagrams" Width="1.5" PointX="7.75" PointY="7.75" />
+        <EntityTypeShape EntityType="user17Model.Tables" Width="1.5" PointX="3.75" PointY="7.125" />
+        <AssociationConnector Association="user17Model.FK_Checks_PaymentMethods" />
+        <AssociationConnector Association="user17Model.FK_Checks_Records" />
+        <AssociationConnector Association="user17Model.FK_Orders_Clients" />
+        <AssociationConnector Association="user17Model.FK_Records_Clients" />
+        <AssociationConnector Association="user17Model.FK_Dishes_DishTypes" />
+        <AssociationConnector Association="user17Model.FK_Orders_Dishes" />
+        <AssociationConnector Association="user17Model.FK_Records_Statuses" />
+        <AssociationConnector Association="user17Model.FK_Records_Tables" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
