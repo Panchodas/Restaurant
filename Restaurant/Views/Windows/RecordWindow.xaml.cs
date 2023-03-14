@@ -16,24 +16,26 @@ using System.Windows.Shapes;
 namespace Restaurant.Views.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для NavigationWindow.xaml
+    /// Логика взаимодействия для RecordWindow.xaml
     /// </summary>
-    public partial class NavigationWindow : Window
+    public partial class RecordWindow : Window
     {
-        public NavigationWindow()
+        public RecordWindow()
         {
             InitializeComponent();
             RecordDg.ItemsSource = App.context.Records.ToList();
         }
+
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             AuthentificationWindow authentificationWindow = new AuthentificationWindow();
             authentificationWindow.Show();
             Close();
         }
+
         private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if(((Records)RecordDg.SelectedItem).StatusId != 2)
+            if (((Records)RecordDg.SelectedItem).StatusId != 2)
             {
                 RecordActionSelectWindow recordActionSelectWindow = new RecordActionSelectWindow(((Records)RecordDg.SelectedItem).Id, ((Records)RecordDg.SelectedItem).Clients.Id);
                 recordActionSelectWindow.ShowDialog();
@@ -43,16 +45,12 @@ namespace Restaurant.Views.Windows
                 MessageBox.Show("Эта запись уже закрыта");
             }
         }
+
         private void AddRecordBtn_Click(object sender, RoutedEventArgs e)
         {
             AddRecordWindow addRecordWindow = new AddRecordWindow();
             addRecordWindow.Show();
             Close();
-        }
-
-        private void SearchTb_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
         }
 
         private void SearchBtn_Click(object sender, RoutedEventArgs e)

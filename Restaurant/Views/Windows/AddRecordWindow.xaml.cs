@@ -45,7 +45,7 @@ namespace Restaurant.Views.Windows
                 App.context.Tables.First(i => i.Id == ((Tables)TableCmb.SelectedItem).Id).IsReserved = true;
                 App.context.SaveChanges();
                 MessageBox.Show("Запись добавлена");
-                NavigationWindow navigationWindow = new NavigationWindow();
+                NaviWindow navigationWindow = new NaviWindow();
                 navigationWindow.Show();
                 Close();
             }
@@ -60,7 +60,7 @@ namespace Restaurant.Views.Windows
         }
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationWindow navigationWindow = new NavigationWindow();
+            NaviWindow navigationWindow = new NaviWindow();
             navigationWindow.Show();
             Close();
         }

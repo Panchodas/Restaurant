@@ -29,9 +29,9 @@ namespace Restaurant.Views.Windows
             {
                 if (App.context.Admins.FirstOrDefault(i => i.Login == LoginTb.Text && i.Password == PasswordPb.Password) != null)
                 {
-                    NavigationWindow navigationWindow = new NavigationWindow();
+                    NaviWindow naviWindow = new NaviWindow();
                     MessageBox.Show("Вы вошли");
-                    navigationWindow.Show();
+                    naviWindow.Show();
                     Close();
                 }
                 else

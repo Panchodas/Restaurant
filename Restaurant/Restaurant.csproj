@@ -130,14 +130,17 @@
     <Compile Include="Views\Windows\AuthentificationWindow.xaml.cs">
       <DependentUpon>AuthentificationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Windows\NavigationWindow.xaml.cs">
-      <DependentUpon>NavigationWindow.xaml</DependentUpon>
+    <Compile Include="Views\Windows\NaviWindow.xaml.cs">
+      <DependentUpon>NaviWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\PasswordRecoveryWindow.xaml.cs">
       <DependentUpon>PasswordRecoveryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\RecordActionSelectWindow.xaml.cs">
       <DependentUpon>RecordActionSelectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\RecordWindow.xaml.cs">
+      <DependentUpon>RecordWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
@@ -198,7 +201,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Windows\NavigationWindow.xaml">
+    <Page Include="Views\Windows\NaviWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -207,6 +210,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\RecordActionSelectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\RecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -23,7 +23,7 @@ namespace Restaurant.Views.Windows
         public AddCheckWindow(int recordId, int clientId)
         {
             InitializeComponent();
-            NavigationWindow navigationWindow = new NavigationWindow();
+            NaviWindow navigationWindow = new NaviWindow();
             PaymentMethodCmb.ItemsSource = App.context.PaymentMethods.ToList();
             PaymentMethodCmb.Text = App.context.PaymentMethods.First(i => i.Id > -1).Name;
             RecordLbl.Content = App.context.Records.First(i => i.Id == recordId).Id;
