@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Restaurant.Views.Windows"
         mc:Ignorable="d"
-        Title="RecordWindow"
+        Title="Просмотр записей"
         Height="400"
         Width="500"
         WindowStartupLocation="CenterScreen"
@@ -45,7 +45,7 @@
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id"
-                                    Width="*"
+                                    Width="30"
                                     Binding="{Binding Id}"
                                     x:Name="IdColumn"/>
                 <DataGridTextColumn Header="ФИО"
@@ -71,7 +71,7 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="BackBtn"
                     Content="Назад"
-                    Width="130"
+                    Width="100"
                     Click="BackBtn_Click"
                     HorizontalAlignment="Left"
                     Grid.Column="0"/>

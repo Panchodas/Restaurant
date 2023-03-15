@@ -1,4 +1,5 @@
 ﻿using Restaurant.Models;
+using Restaurant.Views.Windows.ViewWindows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,7 +72,9 @@ namespace Restaurant.Views.Windows
 
         private void SeeCheckBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            CheckWindow checkWindow = new CheckWindow("RecordWindow");
+            checkWindow.Show();
+            Close();
         }
     }
 }

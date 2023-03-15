@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Restaurant.Views.Windows"
         mc:Ignorable="d"
-        Title="AddRecordWindow"
+        Title="Добавление записи"
         Height="305"
         Width="300"
         WindowStartupLocation="CenterScreen"

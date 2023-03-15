@@ -41,24 +41,30 @@ namespace Restaurant.Views.Windows
 
         private void CheckBtn_Click(object sender, RoutedEventArgs e)
         {
-            CheckWindow checkWindow = new CheckWindow();
+            CheckWindow checkWindow = new CheckWindow("NaviWindow");
             checkWindow.Show();
             Close();
         }
 
         private void TableBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            TableWindow tableWindow = new TableWindow();
+            tableWindow.Show();
+            Close();
         }
 
         private void DishBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            DishWindow dishWindow = new DishWindow();
+            dishWindow.Show();
+            Close();
         }
 
         private void OrderBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            OrderWindow orderWindow = new OrderWindow();
+            orderWindow.Show();
+            Close();
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)

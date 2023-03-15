@@ -29,7 +29,7 @@ namespace Restaurant.Views.Windows
             {
                 if (App.context.Admins.FirstOrDefault(i => i.Login == LoginTb.Text && i.Password == PasswordPb.Password) != null)
                 {
-                    MessageBox.Show("Вы вошли", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                    //MessageBox.Show("Вы вошли", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     NaviWindow naviWindow = new NaviWindow();
                     naviWindow.Show();
                     Close();

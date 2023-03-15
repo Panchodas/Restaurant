@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Restaurant.Views.Windows"
         mc:Ignorable="d"
-        Title="AddCheckWindow"
+        Title=""
         Height="254"
         Width="270"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         WindowStyle="None"
-        ShowInTaskbar="False" BorderThickness="1">
+        BorderThickness="1">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>

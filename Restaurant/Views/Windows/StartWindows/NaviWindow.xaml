@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Restaurant.Views.Windows"
         mc:Ignorable="d"
-        Title="NaviWindow"
+        Title="Навигация"
         Height="400"
         Width="525"
         ResizeMode="NoResize"

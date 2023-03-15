@@ -1,11 +1,11 @@
-﻿<Window x:Class="Restaurant.Views.Windows.AddWindows.AddClientWindow"
+﻿<Window x:Class="Restaurant.Views.Windows.AddWindows.AddOrderWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Restaurant.Views.Windows.AddWindows"
         mc:Ignorable="d"
-        Title="Добавление клиента"
+        Title="Добавление заказа"
         Height="222"
         Width="300"
         WindowStartupLocation="CenterScreen"
@@ -18,7 +18,7 @@
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0">
-                <Label Content="ФИО"
+                <Label Content="Клиент"
                        HorizontalAlignment="Left"
                        Margin="10 0 0 0"/>
                 <TextBox x:Name="SNMTb"
@@ -26,7 +26,7 @@
                           Height="30"/>
             </StackPanel>
             <StackPanel Grid.Row="1">
-                <Label Content="Номер телефона"
+                <Label Content="Блюда"
                        HorizontalAlignment="Left"
                        Margin="10 0 0 0"/>
                 <TextBox x:Name="PhoneNumberTb"/>

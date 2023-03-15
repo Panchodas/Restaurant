@@ -124,11 +124,17 @@
     <Compile Include="Views\Windows\AddWindows\AddCheckWindow.xaml.cs">
       <DependentUpon>AddCheckWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\AddWindows\AddOrderWindow.xaml.cs">
+      <DependentUpon>AddOrderWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\AddWindows\AddRecordWindow.xaml.cs">
       <DependentUpon>AddRecordWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\AddWindows\AddClientWindow.xaml.cs">
       <DependentUpon>AddClientWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\AuxiliaryWindows\TableActionSelectWindow.xaml.cs">
+      <DependentUpon>TableActionSelectWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\StartWindows\AuthentificationWindow.xaml.cs">
       <DependentUpon>AuthentificationWindow.xaml</DependentUpon>
@@ -145,6 +151,12 @@
     <Compile Include="Views\Windows\AuxiliaryWindows\RecordActionSelectWindow.xaml.cs">
       <DependentUpon>RecordActionSelectWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\ViewWindows\DishWindow.xaml.cs">
+      <DependentUpon>DishWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ViewWindows\OrderWindow.xaml.cs">
+      <DependentUpon>OrderWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\ViewWindows\RecordWindow.xaml.cs">
       <DependentUpon>RecordWindow.xaml</DependentUpon>
     </Compile>
@@ -153,6 +165,9 @@
     </Compile>
     <Compile Include="Views\Windows\ViewWindows\CheckWindow.xaml.cs">
       <DependentUpon>CheckWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ViewWindows\TableWindow.xaml.cs">
+      <DependentUpon>TableWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -202,11 +217,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Windows\AddWindows\AddOrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Windows\AddWindows\AddRecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\AddWindows\AddClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\AuxiliaryWindows\TableActionSelectWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -230,6 +253,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Windows\ViewWindows\DishWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ViewWindows\OrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Windows\ViewWindows\RecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -239,6 +270,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\ViewWindows\CheckWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ViewWindows\TableWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
