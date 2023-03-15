@@ -121,29 +121,38 @@
     <Compile Include="Models\Tables.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Views\Windows\AddCheckWindow.xaml.cs">
+    <Compile Include="Views\Windows\AddWindows\AddCheckWindow.xaml.cs">
       <DependentUpon>AddCheckWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Windows\AddRecordWindow.xaml.cs">
+    <Compile Include="Views\Windows\AddWindows\AddRecordWindow.xaml.cs">
       <DependentUpon>AddRecordWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Windows\AuthentificationWindow.xaml.cs">
+    <Compile Include="Views\Windows\AddWindows\AddClientWindow.xaml.cs">
+      <DependentUpon>AddClientWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\StartWindows\AuthentificationWindow.xaml.cs">
       <DependentUpon>AuthentificationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Windows\NaviWindow.xaml.cs">
+    <Compile Include="Views\Windows\ViewWindows\ClientWindow.xaml.cs">
+      <DependentUpon>ClientWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\StartWindows\NaviWindow.xaml.cs">
       <DependentUpon>NaviWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Windows\PasswordRecoveryWindow.xaml.cs">
+    <Compile Include="Views\Windows\StartWindows\PasswordRecoveryWindow.xaml.cs">
       <DependentUpon>PasswordRecoveryWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Windows\RecordActionSelectWindow.xaml.cs">
+    <Compile Include="Views\Windows\AuxiliaryWindows\RecordActionSelectWindow.xaml.cs">
       <DependentUpon>RecordActionSelectWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Windows\RecordWindow.xaml.cs">
+    <Compile Include="Views\Windows\ViewWindows\RecordWindow.xaml.cs">
       <DependentUpon>RecordWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Windows\RegistrationWindow.xaml.cs">
+    <Compile Include="Views\Windows\StartWindows\RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ViewWindows\CheckWindow.xaml.cs">
+      <DependentUpon>CheckWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -189,35 +198,47 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\Windows\AddCheckWindow.xaml">
+    <Page Include="Views\Windows\AddWindows\AddCheckWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Windows\AddRecordWindow.xaml">
+    <Page Include="Views\Windows\AddWindows\AddRecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Windows\AuthentificationWindow.xaml">
+    <Page Include="Views\Windows\AddWindows\AddClientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Windows\NaviWindow.xaml">
+    <Page Include="Views\Windows\StartWindows\AuthentificationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Windows\PasswordRecoveryWindow.xaml">
+    <Page Include="Views\Windows\ViewWindows\ClientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Windows\RecordActionSelectWindow.xaml">
+    <Page Include="Views\Windows\StartWindows\NaviWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Windows\RecordWindow.xaml">
+    <Page Include="Views\Windows\StartWindows\PasswordRecoveryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Windows\RegistrationWindow.xaml">
+    <Page Include="Views\Windows\AuxiliaryWindows\RecordActionSelectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ViewWindows\RecordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\StartWindows\RegistrationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ViewWindows\CheckWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

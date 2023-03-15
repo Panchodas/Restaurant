@@ -42,11 +42,12 @@ namespace Restaurant.Views.Windows
                     StatusId = 1
                 };
                 App.context.Records.Add(records);
+                App.context.SaveChanges();
                 App.context.Tables.First(i => i.Id == ((Tables)TableCmb.SelectedItem).Id).IsReserved = true;
                 App.context.SaveChanges();
                 MessageBox.Show("Запись добавлена");
-                NaviWindow navigationWindow = new NaviWindow();
-                navigationWindow.Show();
+                RecordWindow recordWindow = new RecordWindow();
+                recordWindow.Show();
                 Close();
             }
             else

@@ -57,8 +57,6 @@ namespace Restaurant.Views.Windows
                 }
                 App.context.SaveChanges();
                 MessageBox.Show("Чек добавлен");
-                //NavigationWindow navigationWindow = new NavigationWindow();
-                //navigationWindow.Show();
                 Close();
             }
             else

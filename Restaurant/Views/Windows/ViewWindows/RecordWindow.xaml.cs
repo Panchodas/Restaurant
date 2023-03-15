@@ -28,8 +28,8 @@ namespace Restaurant.Views.Windows
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
-            AuthentificationWindow authentificationWindow = new AuthentificationWindow();
-            authentificationWindow.Show();
+            NaviWindow naviWindow = new NaviWindow();
+            naviWindow.Show();
             Close();
         }
 
@@ -55,13 +55,18 @@ namespace Restaurant.Views.Windows
 
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
-            RecordDg.ItemsSource = App.context.Records
+            if (App.context.Records
+                .Where(i => i.Clients.SNM == SearchTb.Text || i.Tables.Number == SearchTb.Text || i.Statuses.Name == SearchTb.Text).Count() != 0)
+            {
+                RecordDg.ItemsSource = App.context.Records
                 .Where(i => i.Clients.SNM == SearchTb.Text || i.Tables.Number == SearchTb.Text || i.Statuses.Name == SearchTb.Text).ToList();
+            }
         }
 
         private void UpdateBtn_Click(object sender, RoutedEventArgs e)
         {
             RecordDg.ItemsSource = App.context.Records.ToList();
+            SearchTb.Text = "";
         }
 
         private void SeeCheckBtn_Click(object sender, RoutedEventArgs e)

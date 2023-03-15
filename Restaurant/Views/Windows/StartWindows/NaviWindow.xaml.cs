@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Restaurant.Views.Windows.ViewWindows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,17 +27,23 @@ namespace Restaurant.Views.Windows
 
         private void ClientBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            ClientWindow clientWindow = new ClientWindow();
+            clientWindow.Show();
+            Close();
         }
 
         private void RecordBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            RecordWindow recordWindow = new RecordWindow();
+            recordWindow.Show();
+            Close();
         }
 
         private void CheckBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            CheckWindow checkWindow = new CheckWindow();
+            checkWindow.Show();
+            Close();
         }
 
         private void TableBtn_Click(object sender, RoutedEventArgs e)
@@ -56,7 +63,9 @@ namespace Restaurant.Views.Windows
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            AuthentificationWindow authentificationWindow = new AuthentificationWindow();
+            authentificationWindow.Show();
+            Close();
         }
     }
 }

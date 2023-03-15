@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         Title="NaviWindow"
         Height="400"
-        Width="525">
+        Width="525"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />

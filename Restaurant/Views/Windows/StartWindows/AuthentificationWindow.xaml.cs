@@ -29,19 +29,19 @@ namespace Restaurant.Views.Windows
             {
                 if (App.context.Admins.FirstOrDefault(i => i.Login == LoginTb.Text && i.Password == PasswordPb.Password) != null)
                 {
+                    MessageBox.Show("Вы вошли", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     NaviWindow naviWindow = new NaviWindow();
-                    MessageBox.Show("Вы вошли");
                     naviWindow.Show();
                     Close();
                 }
                 else
                 {
-                    MessageBox.Show("Неверный логин или пароль");
+                    MessageBox.Show("Неверный логин или пароль", "", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("Все поля должны быть заполнены");
+                MessageBox.Show("Все поля должны быть заполнены", "", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         private void LoginBtn_Click(object sender, RoutedEventArgs e)

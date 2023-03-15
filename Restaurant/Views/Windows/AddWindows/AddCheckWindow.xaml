@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="AddCheckWindow"
         Height="254"
-        Width="230"
+        Width="270"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         WindowStyle="None"
