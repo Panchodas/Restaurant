@@ -22,6 +22,7 @@ namespace Restaurant.Views.Windows
         public AuthentificationWindow()
         {
             InitializeComponent();
+            
         }
         private void Auth()
         {

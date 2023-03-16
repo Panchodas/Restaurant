@@ -43,7 +43,7 @@ namespace Restaurant.Views.Windows
             }
             else
             {
-                MessageBox.Show("Эта запись уже закрыта");
+                MessageBox.Show("Эта запись уже закрыта", "", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 

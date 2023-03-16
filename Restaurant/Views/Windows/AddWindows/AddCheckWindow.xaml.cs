@@ -56,12 +56,12 @@ namespace Restaurant.Views.Windows
                     App.context.Clients.First(i => i.Id == (int)ClientLbl.Content).Bonuses = App.context.Clients.First(i => i.Id == (int)ClientLbl.Content).Bonuses + (decimal)PlusBonusLbl.Content;
                 }
                 App.context.SaveChanges();
-                MessageBox.Show("Чек добавлен");
+                MessageBox.Show("Чек успешно добавлен", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
             else
             {
-                MessageBox.Show("Все поля должны быть заполнены");
+                MessageBox.Show("Все поля должны быть заполнены", "", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         private void GuestBillTb_TextChanged(object sender, TextChangedEventArgs e)

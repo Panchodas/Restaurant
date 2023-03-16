@@ -44,14 +44,14 @@ namespace Restaurant.Views.Windows.AddWindows
                 };
                 App.context.Clients.Add(clients);
                 App.context.SaveChanges();
-                MessageBox.Show("Клиент добавлен");
+                MessageBox.Show("Клиент успешно добавлен", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 ClientWindow clientWindow = new ClientWindow();
                 clientWindow.Show();
                 Close();
             }
             else
             {
-                MessageBox.Show("Все поля должны быть заполнены");
+                MessageBox.Show("Все поля должны быть заполнены", "", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using Restaurant.Views.Windows.AddWindows;
+﻿using Restaurant.Models;
+using Restaurant.Views.Windows.AddWindows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +53,23 @@ namespace Restaurant.Views.Windows
             NaviWindow naviWindow = new NaviWindow();
             naviWindow.Show();
             Close();
+        }
+
+        private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Вы точно хотите удалить этого клиента?", "",
+                MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (result == MessageBoxResult.Yes)
+            {
+                App.context.Clients.Remove(App.context.Clients.First(i => i.Id == ((Clients)ClientDg.SelectedItem).Id));
+                App.context.SaveChanges();
+                MessageBox.Show("Пользователь успешно удалён", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
         }
     }
 }

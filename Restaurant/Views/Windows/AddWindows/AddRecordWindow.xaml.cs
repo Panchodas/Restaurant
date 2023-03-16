@@ -45,14 +45,14 @@ namespace Restaurant.Views.Windows
                 App.context.SaveChanges();
                 App.context.Tables.First(i => i.Id == ((Tables)TableCmb.SelectedItem).Id).IsReserved = true;
                 App.context.SaveChangesAsync();
-                MessageBox.Show("Запись добавлена");
+                MessageBox.Show("Запись успешно добавлена", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 RecordWindow recordWindow = new RecordWindow();
                 recordWindow.Show();
                 Close();
             }
             else
             {
-                MessageBox.Show("Все поля должны быть заполнены");
+                MessageBox.Show("Все поля должны быть заполнены", "", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         private void AddBtn_Click(object sender, RoutedEventArgs e)

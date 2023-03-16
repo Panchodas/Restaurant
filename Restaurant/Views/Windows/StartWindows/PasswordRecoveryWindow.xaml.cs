@@ -35,24 +35,24 @@ namespace Restaurant.Views.Windows
                     {
                         App.context.Admins.First(i => i.Login == MailTb.Text && i.Password == PasswordPb.Password).Password = NewPasswordPb.Password;
                         App.context.SaveChanges();
-                        MessageBox.Show("Пароль изменён");
+                        MessageBox.Show("Пароль успешно изменён", "", MessageBoxButton.OK, MessageBoxImage.Information);
                         AuthentificationWindow authentification = new AuthentificationWindow();
                         authentification.Show();
                         Close();
                     }
                     else
                     {
-                        MessageBox.Show("Не используйте старый пароль");
+                        MessageBox.Show("Не используйте старый пароль", "", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Пользователь не найден");
+                    MessageBox.Show("Пользователь не найден", "", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("Все поля должны быть заполнены");
+                MessageBox.Show("Все поля должны быть заполнены", "", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         private bool PasswordCheck(bool resp)
@@ -63,7 +63,7 @@ namespace Restaurant.Views.Windows
             }
             else
             {
-                MessageBox.Show("Пароли должны совпадать");
+                MessageBox.Show("Пароли должны совпадать", "", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             return resp;
         }

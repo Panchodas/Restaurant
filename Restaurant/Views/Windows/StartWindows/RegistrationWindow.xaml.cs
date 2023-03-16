@@ -63,7 +63,7 @@ namespace Restaurant.Views.Windows
             }
             else
             {
-                MessageBox.Show("Все поля должны быть заполнены");
+                MessageBox.Show("Все поля должны быть заполнены", "", MessageBoxButton.OK, MessageBoxImage.Warning);
                 //MessageBox.Show("Неверный логин или пароль");
             }
         }
@@ -75,7 +75,7 @@ namespace Restaurant.Views.Windows
             }
             else
             {
-                MessageBox.Show("Пароли должны совпадать");
+                MessageBox.Show("Пароли должны совпадать", "", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             return resp;
         }
@@ -88,7 +88,7 @@ namespace Restaurant.Views.Windows
             };
             App.context.Admins.Add(admins);
             App.context.SaveChanges();
-            MessageBox.Show("Вы успешно зарегистрированы");
+            MessageBox.Show("Вы успешно зарегистрированы", "", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {

@@ -45,12 +45,12 @@ namespace Restaurant.Views.Windows
             {
                 App.context.Records.First(i => i.Id == RecordId).StatusId = 2;
                 App.context.SaveChanges();
-                MessageBox.Show("Запись закрыта");
+                MessageBox.Show("Запись успешно закрыта", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
             else
             {
-                MessageBox.Show("Добавьте чек!");
+                MessageBox.Show("Добавьте чек", "", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }
