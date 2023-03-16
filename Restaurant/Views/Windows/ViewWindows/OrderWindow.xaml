@@ -31,7 +31,8 @@
                 Click="UpdateBtn_Click"
                 HorizontalAlignment="Right"
                 Width="80"
-                Content="Обновить"/>
+                Content="Обновить"
+                Margin="0 0 5 0"/>
         <!--Средняя строка-->
         <DataGrid x:Name="OrderDg"
                   IsReadOnly="True"
@@ -67,13 +68,15 @@
                     Width="100"
                     Click="BackBtn_Click"
                     HorizontalAlignment="Left"
-                    Grid.Column="0"/>
+                    Grid.Column="0"
+                    Margin="5 0 0 0"/>
             <Button x:Name="AddOrderBtn"
                     HorizontalAlignment="Right"
                     Grid.Column="2"
                     Content="Добавить заказ"
                     Width="120"
-                    Click="AddOrderBtn_Click"/>
+                    Click="AddOrderBtn_Click"
+                    Margin="0 0 5 0"/>
         </Grid>
     </Grid>
 </Window>

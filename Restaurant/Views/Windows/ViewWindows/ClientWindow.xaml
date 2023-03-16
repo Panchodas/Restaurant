@@ -32,7 +32,8 @@
                 Click="UpdateBtn_Click"
                 HorizontalAlignment="Right"
                 Width="80"
-                Content="Обновить"/>
+                Content="Обновить"
+                Margin="0 0 5 0"/>
         <!--Средняя строка-->
         <DataGrid x:Name="ClientDg"
                   IsReadOnly="True"
@@ -71,13 +72,15 @@
                     Width="100"
                     Click="BackBtn_Click"
                     HorizontalAlignment="Left"
-                    Grid.Column="0"/>
+                    Grid.Column="0"
+                    Margin="5 0 0 0"/>
             <Button x:Name="AddClientBtn"
                     HorizontalAlignment="Right"
                     Grid.Column="2"
                     Content="Добавить клиента"
                     Width="120"
-                    Click="AddClientBtn_Click"/>
+                    Click="AddClientBtn_Click"
+                    Margin="0 0 5 0"/>
         </Grid>
     </Grid>
 </Window>

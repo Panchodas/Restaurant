@@ -36,14 +36,14 @@
                     Grid.Row="2"
                     HorizontalAlignment="Left"
                     Width="100"
-                    Margin="10 0 0 0"
+                    Margin="5 0 0 0"
                     Name="BackBtn"
                     Click="BackBtn_Click"/>
             <Button Content="Добавить"
                     Grid.Row="2"
                     HorizontalAlignment="Right"
                     Width="100"
-                    Margin="0 0 10 0"
+                    Margin="0 0 5 0"
                     x:Name="AddBtn"
                     Click="AddBtn_Click"/>
         </Grid>

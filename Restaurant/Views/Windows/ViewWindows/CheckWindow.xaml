@@ -32,7 +32,8 @@
                 Click="UpdateBtn_Click"
                 HorizontalAlignment="Right"
                 Width="80"
-                Content="Обновить"/>
+                Content="Обновить"
+                Margin="0 0 5 0"/>
         <!--Средняя строка-->
         <DataGrid x:Name="CheckDg"
                   IsReadOnly="True"
@@ -73,13 +74,15 @@
                     Width="100"
                     Click="BackBtn_Click"
                     HorizontalAlignment="Left"
-                    Grid.Column="0"/>
+                    Grid.Column="0"
+                    Margin="5 0 0 0"/>
             <Button x:Name="PrintCheckBtn"
                     HorizontalAlignment="Right"
                     Grid.Column="2"
                     Content="Напечатать чек"
                     Width="120"
-                    Click="PrintCheckBtn_Click"/>
+                    Click="PrintCheckBtn_Click"
+                    Margin="0 0 5 0"/>
         </Grid>
     </Grid>
 </Window>

@@ -32,7 +32,8 @@
                 Click="UpdateBtn_Click"
                 HorizontalAlignment="Right"
                 Width="80"
-                Content="Обновить"/>
+                Content="Обновить"
+                Margin="0 0 5 0"/>
         <!--Средняя строка-->
         <DataGrid x:Name="RecordDg"
                   IsReadOnly="True"
@@ -74,19 +75,22 @@
                     Width="100"
                     Click="BackBtn_Click"
                     HorizontalAlignment="Left"
-                    Grid.Column="0"/>
+                    Grid.Column="0"
+                    Margin="5 0 0 0"/>
             <Button x:Name="SeeCheckBtn"
                     Content="Просмотреть чеки"
                     Width="130"
                     Click="SeeCheckBtn_Click"
                     HorizontalAlignment="Center"
-                    Grid.Column="1"/>
+                    Grid.Column="1"
+                    Margin="0"/>
             <Button x:Name="AddRecordBtn"
                     HorizontalAlignment="Right"
                     Grid.Column="2"
                     Content="Добавить запись"
                     Width="120"
-                    Click="AddRecordBtn_Click"/>
+                    Click="AddRecordBtn_Click"
+                    Margin="0 0 5 0"/>
         </Grid>
     </Grid>
 </Window>
